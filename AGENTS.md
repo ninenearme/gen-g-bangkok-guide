@@ -130,5 +130,5 @@ There is no automated UI test suite.
 ## Deployment notes
 
 - Any static host works: GitHub Pages, Netlify, Vercel static, S3. Upload the repo contents as-is.
-- `js/app.js` registers a service worker (`sw.js`) when not on localhost. **`sw.js` does not exist yet**, so the registration fails silently. Either add a real `sw.js` (offline cache) or remove the registration.
+- `sw.js` caches the four core files and all local photos referenced in `js/app.js`. For each release, including photo-only updates, increment `VERSION` in `sw.js` (for example, `v1` to `v2`). Deploy the assets before or alongside the updated worker. The new worker activates after tabs using the old worker close. Use `/?pwa=1` to test registration on localhost.
 - The map uses Leaflet 1.9.4 from unpkg and OpenStreetMap tiles, darkened with a CSS filter. The weather and exchange-rate widgets call public APIs at runtime and fall back to "last known" values.

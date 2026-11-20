@@ -18700,7 +18700,7 @@
   ${e ? "" : `<div class="welcome" id="welcome"><span>${o("WELCOME TO THE CITY OF ANGELS. YOUR GOLDEN ADVENTURE STARTS HERE.", "천사의 도시에 온 걸 환영해요. 당신의 골든 어드벤처가 여기서 시작돼요.", "ยินดีต้อนรับสู่เมืองแห่งเทวดา การผจญภัยสีทองของคุณเริ่มที่นี่")}</span><button class="icon-btn" id="welcome-x" aria-label="${o("Dismiss", "닫기", "ปิด")}">${m("x", 20)}</button></div>`}
   <div class="strip" style="margin-top:${e ? 0 : 14}px"><div><small>${o("Bangkok time", "방콕 시간", "เวลากรุงเทพ")}</small><b id="s-time">--:--</b><span id="s-date">UTC+7</span></div><div><small>${o("Weather", "날씨", "อากาศ")}</small><b id="s-wx">—</b><span id="s-wx2">${o("loading…", "불러오는 중…", "…")}</span></div><div><small>${o("Thai baht", "태국 바트", "บาท")}</small><b id="s-fx">฿</b><span id="s-fx2">${o("rate loading…", "환율 불러오는 중…", "…")}</span></div><div><small>${o("Language", "언어", "ภาษา")}</small><b style="display:flex;gap:6px">${ke.map((n) => `<button data-lang="${n.code}" class="chip ${I() === n.code ? "on" : ""}" style="min-height:30px;padding:0 10px;font-size:12px">${n.label}</button>`).join("")}</b></div><a href="#/emergency"><small style="color:#ff8b8f">${o("Emergency", "긴급", "ฉุกเฉิน")}</small><b>191 · 1669 · 1155</b><span style="color:#ffb3b6">${o("Tap for all numbers", "모든 번호 보기", "ดูทั้งหมด")}</span></a></div></div><div class="shimmer"></div></section>
   <div class="wrap">${M()}
-  <section class="section"><span class="kicker">${o("9 sections", "9개 섹션", "9 หมวด")}</span><h2 class="h2" style="margin-top:8px">${o("Your Bangkok dashboard", "나의 방콕 대시보드", "แดชบอร์ดกรุงเทพ")}</h2><p class="sub">${o("Everything you need, one tap away.", "필요한 건 전부 탭 한 번으로.", "")}</p>
+  <section class="section"><span class="kicker">${o("9 sections", "9개 섹션", "9 หมวด")}</span><h2 class="h2" style="margin-top:8px">${o("Your Bangkok dashboard", "나의 방콕 대시보드", "แดชบอร์ดกรุงเทพ")}</h2><p class="sub">${o("Everything you need, one tap away.", "필요한 건 전부 탭 한 번으로.", "ทุกอย่างที่ต้องใช้, แตะเดียวก็เจอ.")}</p>
   <div class="bento">${Qn.map(([n, i, , r], l) => {
     let p = qe.find((g) => g.id === n),
       d = i && D[i];
@@ -18736,7 +18736,7 @@
         let d = Wn[l.code] || ["—", "—"];
         (c("#s-wx", e).textContent = `${Math.round(l.t)}°C`),
           (c("#s-wx2", e).textContent =
-            `${o(d[0], d[1], d[2] || d[0])} · ${o("feels", "체감", "รู้สึกเหมือน")} ${Math.round(l.f)}° · ${l.h}%${p ? " · " + o("last known", "마지막 값", "") : ""}`);
+            `${o(d[0], d[1], d[2] || d[0])} · ${o("feels", "체감", "รู้สึกเหมือน")} ${Math.round(l.f)}° · ${l.h}%${p ? " · " + o("last known", "마지막 값", "ข้อมูลล่าสุดที่บันทึกไว้") : ""}`);
       };
     fetch(
       "https://api.open-meteo.com/v1/forecast?latitude=13.7563&longitude=100.5018&current=temperature_2m,apparent_temperature,relative_humidity_2m,weather_code&timezone=Asia%2FBangkok",
@@ -18757,11 +18757,11 @@
         l
           ? n(l, true)
           : ((c("#s-wx", e).textContent = "—"),
-            (c("#s-wx2", e).textContent = o("unavailable offline", "오프라인에서는 볼 수 없어요", "")));
+            (c("#s-wx2", e).textContent = o("unavailable offline", "오프라인에서는 볼 수 없어요", "ดูไม่ได้เมื่อออฟไลน์")));
       });
     let i = (l, p) => {
       (c("#s-fx", e).textContent = `100฿ ≈ ${Math.round(l.krw * 100).toLocaleString()}₩`),
-        (c("#s-fx2", e).textContent = `${l.date}${p ? " · " + o("last known", "마지막 값", "") : ""} · ECB`);
+        (c("#s-fx2", e).textContent = `${l.date}${p ? " · " + o("last known", "마지막 값", "ข้อมูลล่าสุดที่บันทึกไว้") : ""} · ECB`);
     };
     fetch("https://api.frankfurter.dev/v1/latest?base=THB&symbols=KRW")
       .then((l) => l.json())
@@ -18777,7 +18777,7 @@
             (c("#s-fx2", e).textContent = o(
               "Notes: 20 · 50 · 100 · 500 · 1000",
               "지폐: 20·50·100·500·1000",
-              "",
+              "ธนบัตร: 20 · 50 · 100 · 500 · 1000",
             )));
       });
     let r = c("#hero-bg", e);
@@ -18992,7 +18992,7 @@
     let e = w.get("gender") === "f";
     return `<div class="row row--between" style="margin-bottom:6px"><label class="search" style="flex:1;min-width:220px">${m("search", 18)}<input id="pq" type="text" value="${s(v.q)}" placeholder="${s(o("Search phrases in English, 한국어 or Thai", "영어·한국어·태국어로 표현 검색", "ค้นหาวลี"))}"></label>
   <div class="row"><span class="muted" style="font-size:12px">${o("I speak as:", "내 말투:", "ผู้พูด:")}</span><div class="langsw" id="gender"><button data-g="m" class="${e ? "" : "on"}">${o("Male · ครับ", "남성 · 크랍", "ชาย · ครับ")}</button><button data-g="f" class="${e ? "on" : ""}">${o("Female · ค่ะ", "여성 · 카", "หญิง · ค่ะ")}</button></div></div></div>
-  <div class="note" style="margin:8px 0 4px">${o("Thai politeness: end sentences with “khrap” (men) or “kha” (women). It’s like adding 요 in Korean — it makes you sound polite. Pick yours above and every phrase adapts.", "태국어 공손함: 문장 끝에 남성은 “크랍”, 여성은 “카”를 붙여요. 한국어의 “~요” 같은 역할이에요. 위에서 선택하면 모든 표현이 자동으로 바뀌어요.", "ลงท้ายด้วย ครับ/ค่ะ")} ${Lo() ? "" : `<span class="muted">${o("Audio buttons appear only on devices with a Thai voice; “Show to a local” works everywhere.", "태국어 음성이 있는 기기에서만 발음 듣기 버튼이 나타나요. “현지인에게 보여주기”는 어디서나 돼요.", "")}</span>`}</div>
+  <div class="note" style="margin:8px 0 4px">${o("Thai politeness: end sentences with “khrap” (men) or “kha” (women). It’s like adding 요 in Korean — it makes you sound polite. Pick yours above and every phrase adapts.", "태국어 공손함: 문장 끝에 남성은 “크랍”, 여성은 “카”를 붙여요. 한국어의 “~요” 같은 역할이에요. 위에서 선택하면 모든 표현이 자동으로 바뀌어요.", "ลงท้ายด้วย ครับ/ค่ะ")} ${Lo() ? "" : `<span class="muted">${o("Audio buttons appear only on devices with a Thai voice; “Show to a local” works everywhere.", "태국어 음성이 있는 기기에서만 발음 듣기 버튼이 나타나요. “현지인에게 보여주기”는 어디서나 돼요.", "ปุ่มฟังเสียงจะแสดงเฉพาะบนอุปกรณ์ที่มีเสียงอ่านภาษาไทย; ส่วน “ให้คนไทยดู” ใช้ได้ทุกเครื่อง.")}</span>`}</div>
   <div class="chips">${pt.map(([a, t, n, i]) => C(s(o(t, n, i)), `data-pcat="${a}"`, v.cat === a)).join("")}${C(`${m("heart", 14)} ${o("Saved", "저장", "บันทึก")}`, "data-pfav", v.fav)}</div><div id="plist">${mt()}</div>`;
   }
   function pa() {
@@ -19317,22 +19317,22 @@
   function Ra() {
     if (Te >= ma.length) {
       let a = ai();
-      return `<div class="panel panel--gold"><span class="kicker">${o("Your three matches", "추천 3가지", "สามเมนูที่ตรงกับคุณ")}</span><div class="grid grid--3" style="margin-top:14px">${a.map((t, n) => `<article class="card">${F(`food/${t.f.id}`, { alt: t.f.imgAlt || t.f.name.en, label: t.f.name.en })}<div class="card__b"><span class="stat" style="font-size:22px">#${n + 1}</span><h3>${s(t.f.name.en)}</h3><div class="th" lang="th">${s(t.f.name.th)} · ${s(t.f.name.ko)}</div><div class="meta">${t.f.cat === "desserts" ? "" : Le(t.f.spice)}<span>${t.f.price[0]}–${t.f.price[1]} THB</span></div><div class="tags">${Ma(t.f)}</div><div class="note" style="font-size:13px"><b>${o("Why it matches", "추천 이유", "ทำไมถึงเหมาะกับคุณ")}:</b><ul style="padding-left:16px;margin-top:4px">${(t.why.length ? t.why.slice(0, 3) : [["A well-rounded pick from the guide", "가이드가 자신 있게 권하는 메뉴예요"]]).map(([i, r]) => `<li>${s(o(i, r, i))}</li>`).join("")}</ul></div><a class="btn btn--gold btn--sm" href="#/food/${t.f.id}">${o("See how to order", "주문법 보기", "ดูวิธีสั่ง")}</a></div></article>`).join("")}</div><div class="row" style="margin-top:14px"><button class="btn btn--ghost" id="mm-redo">${m("refresh", 16)} ${o("Start over", "다시 하기", "เริ่มใหม่")}</button></div><p class="muted" style="font-size:12.5px;margin-top:8px">${o("Suggestions are based on the answers you gave — not on assumptions about what Korean visitors like.", "추천은 선택하신 답변을 기준으로 해요. 한국인의 입맛을 일반화하지 않아요.", "")}</p></div>`;
+      return `<div class="panel panel--gold"><span class="kicker">${o("Your three matches", "추천 3가지", "สามเมนูที่ตรงกับคุณ")}</span><div class="grid grid--3" style="margin-top:14px">${a.map((t, n) => `<article class="card">${F(`food/${t.f.id}`, { alt: t.f.imgAlt || t.f.name.en, label: t.f.name.en })}<div class="card__b"><span class="stat" style="font-size:22px">#${n + 1}</span><h3>${s(t.f.name.en)}</h3><div class="th" lang="th">${s(t.f.name.th)} · ${s(t.f.name.ko)}</div><div class="meta">${t.f.cat === "desserts" ? "" : Le(t.f.spice)}<span>${t.f.price[0]}–${t.f.price[1]} THB</span></div><div class="tags">${Ma(t.f)}</div><div class="note" style="font-size:13px"><b>${o("Why it matches", "추천 이유", "ทำไมถึงเหมาะกับคุณ")}:</b><ul style="padding-left:16px;margin-top:4px">${(t.why.length ? t.why.slice(0, 3) : [["A well-rounded pick from the guide", "가이드가 자신 있게 권하는 메뉴예요"]]).map(([i, r]) => `<li>${s(o(i, r, i))}</li>`).join("")}</ul></div><a class="btn btn--gold btn--sm" href="#/food/${t.f.id}">${o("See how to order", "주문법 보기", "ดูวิธีสั่ง")}</a></div></article>`).join("")}</div><div class="row" style="margin-top:14px"><button class="btn btn--ghost" id="mm-redo">${m("refresh", 16)} ${o("Start over", "다시 하기", "เริ่มใหม่")}</button></div><p class="muted" style="font-size:12.5px;margin-top:8px">${o("Suggestions are based on the answers you gave — not on assumptions about what Korean visitors like.", "추천은 선택하신 답변을 기준으로 해요. 한국인의 입맛을 일반화하지 않아요.", "เราแนะนำตามคำตอบของคุณ — ไม่ได้เดาว่าคนเกาหลีชอบอะไร.")}</p></div>`;
     }
     let e = ma[Te];
     return `<div class="panel panel--gold"><div class="row row--between"><span class="kicker">${o("Food Matchmaker", "푸드 매치메이커", "จับคู่อาหาร")} ${Te + 1}/${ma.length}</span>${Te ? `<button class="btn btn--ghost btn--sm" id="mm-back">${m("left", 14)}</button>` : ""}</div><div class="bar" style="margin:12px 0 18px"><i style="width:${(Te / ma.length) * 100}%"></i></div><h3 style="font-size:22px;margin-bottom:10px">${s(o(...e.q))}</h3>${e.a.map(([a, t, n, i]) => `<button class="opt" data-mm="${a}">${s(o(t, n, i))}</button>`).join("")}</div>`;
   }
   function ti() {
-    return `<div class="wrap">${A(o("Thai vs Korean food guide", "태국 vs 한국 음식 가이드", "อาหารไทย vs เกาหลี"), o("Korean taste, Thai adventure.", "한국 입맛, 태국 모험.", "รสเกาหลี ผจญภัยแบบไทย"), o("Start from flavors you already love. These are flavor-based suggestions — not claims that the dishes are the same.", "이미 좋아하는 맛에서 출발해 보세요. 맛 취향 기반의 추천일 뿐, 같은 음식이라는 뜻은 아니에요.", ""))}${M()}
-  <h2 class="h2">${o("If you like this in Korea…", "한국에서 이걸 좋아한다면…", "ถ้าชอบอันนี้ในเกาหลี…")}</h2><p class="sub">${o("…try this in Bangkok.", "…방콕에서는 이걸 드셔 보세요.", "")}</p>
+    return `<div class="wrap">${A(o("Thai vs Korean food guide", "태국 vs 한국 음식 가이드", "อาหารไทย vs เกาหลี"), o("Korean taste, Thai adventure.", "한국 입맛, 태국 모험.", "รสเกาหลี ผจญภัยแบบไทย"), o("Start from flavors you already love. These are flavor-based suggestions — not claims that the dishes are the same.", "이미 좋아하는 맛에서 출발해 보세요. 맛 취향 기반의 추천일 뿐, 같은 음식이라는 뜻은 아니에요.", "เริ่มจากรสชาติที่คุณชอบ. เราจับคู่เมนูตามรสชาติ — ไม่ได้หมายความว่าเป็นอาหารจานเดียวกัน."))}${M()}
+  <h2 class="h2">${o("If you like this in Korea…", "한국에서 이걸 좋아한다면…", "ถ้าชอบอันนี้ในเกาหลี…")}</h2><p class="sub">${o("…try this in Bangkok.", "…방콕에서는 이걸 드셔 보세요.", "…มาเที่ยวกรุงเทพ ลองเมนูนี้ดู.")}</p>
   <div class="grid grid--2">${Xn.map((e) => {
     let a = E("food", e.th);
     return a
       ? `<article class="card" style="flex-direction:row;min-height:170px"><div style="width:38%;flex:none">${F(`food/${a.id}`, { alt: a.imgAlt || a.name.en, label: a.name.en, ratio: "1/1" })}</div><div class="card__b"><div class="muted" style="font-size:12px">${s(o(e.kr[0], e.kr[1], e.kr[0]))}</div><h3 style="font-size:17px">→ ${s(a.name.en)}</h3><div class="th" lang="th" style="font-size:14px">${s(a.name.th)}</div><p style="-webkit-line-clamp:unset;font-size:13px">${s(h(e.why))}</p><p style="-webkit-line-clamp:unset;font-size:12px;color:var(--muted)"><b>${o("Heads-up", "참고", "หมายเหตุ")}:</b> ${s(h(e.caveat))}</p><a class="card__link" href="#/food/${a.id}" aria-label="${s(a.name.en)}"></a></div></article>`
       : "";
   }).join("")}</div>
-  <hr class="rule"><h2 class="h2">${o("Interactive Food Matchmaker", "인터랙티브 푸드 매치메이커", "จับคู่อาหาร")}</h2><p class="sub">${o("Six quick questions, three dishes — with the reasons why.", "질문 6개로 3가지 메뉴와 추천 이유를 알려드려요.", "")}</p><div id="mm">${Ra()}</div>
-  <hr class="rule"><h2 class="h2">${o("Not too spicy — for beginners", "맵지 않은 초보자 컬렉션", "ไม่เผ็ดมาก สำหรับมือใหม่")}</h2><p class="sub">${o("Spice 0–1 out of 5 and beginner-friendly. All of them can still be ordered “mai phet”.", "맵기 0~1/5의 입문자용 메뉴예요. “마이 펫”으로 더 순하게 주문할 수도 있어요.", "")}</p><div class="grid grid--cards">${oi().map(he).join("")}</div></div>`;
+  <hr class="rule"><h2 class="h2">${o("Interactive Food Matchmaker", "인터랙티브 푸드 매치메이커", "จับคู่อาหาร")}</h2><p class="sub">${o("Six quick questions, three dishes — with the reasons why.", "질문 6개로 3가지 메뉴와 추천 이유를 알려드려요.", "ตอบคำถามสั้น ๆ หกข้อ รับสามเมนูแนะนำ — พร้อมเหตุผลที่เลือกให้.")}</p><div id="mm">${Ra()}</div>
+  <hr class="rule"><h2 class="h2">${o("Not too spicy — for beginners", "맵지 않은 초보자 컬렉션", "ไม่เผ็ดมาก สำหรับมือใหม่")}</h2><p class="sub">${o("Spice 0–1 out of 5 and beginner-friendly. All of them can still be ordered “mai phet”.", "맵기 0~1/5의 입문자용 메뉴예요. “마이 펫”으로 더 순하게 주문할 수도 있어요.", "เผ็ดระดับ 0–1 จาก 5 เหมาะกับคนเพิ่งลองอาหารไทย. ทุกเมนูยังสั่งแบบ “ไม่เผ็ด” ได้.")}</p><div class="grid grid--cards">${oi().map(he).join("")}</div></div>`;
   }
   function ni(e) {
     e.addEventListener("click", (a) => {
@@ -19576,11 +19576,11 @@
   q(Ct, { detail: () => mi, mount: () => pi, render: () => ci });
   function ii() {
     return `<div class="grid grid--cards">${Ge.map((e) => `<article class="card"><div class="ph" style="aspect-ratio:16/10">${lo[e.id] ? F(`${lo[e.id]}`, { alt: h(e.name), illustrative: true, ratio: "16/10" }) : `<div class="ph--none" style="display:grid;place-items:center;height:100%;color:var(--gold)">${m(xt[e.id] || "info", 44)}</div>`}</div><div class="card__b"><h3>${s(h(e.name))}</h3><p>${s(h(e.bestFor))}</p><div class="meta"><span>${o("Speed", "속도", "ความเร็ว")} ${Ye(e.ratings.speed)}</span><span>${o("Cheap", "저렴", "ถูก")} ${Ye(e.ratings.cost)}</span></div><a class="card__link" href="#/transport/${e.id}" aria-label="${s(h(e.name))}"></a></div></article>`).join("")}</div>
-  <div class="panel" style="margin-top:18px"><h3 style="margin-bottom:6px">${o("Plan a route in Google Maps", "구글 지도로 경로 찾기", "วางแผนเส้นทางใน Google Maps")}</h3><form id="route" class="form" style="align-items:end"><label class="f">${o("From", "출발", "จาก")}<input id="rf" type="text" placeholder="${s(o("e.g. BTS Siam", "예: BTS 시암", ""))}"></label><label class="f">${o("To", "도착", "ถึง")}<input id="rt" type="text" placeholder="${s(o("e.g. Yaowarat Road", "예: 야오와랏 로드", ""))}"></label><label class="f">${o("Mode", "이동 수단", "วิธี")}<select id="rm"><option value="transit">${o("Public transport", "대중교통", "ขนส่งสาธารณะ")}</option><option value="driving">${o("Taxi / Grab (driving)", "택시/그랩 (자동차)", "รถยนต์")}</option><option value="walking">${o("Walking", "도보", "เดิน")}</option></select></label><button class="btn btn--gold">${m("nav", 16)} ${o("Open directions", "길찾기 열기", "นำทาง")}</button></form><p class="muted" style="font-size:12.5px;margin-top:8px">${o("Live travel times and fares come from Google Maps — this guide never guesses them.", "실시간 소요 시간과 요금은 구글 지도가 알려줘요. 이 가이드는 추측으로 적지 않아요.", "")}</p></div>`;
+  <div class="panel" style="margin-top:18px"><h3 style="margin-bottom:6px">${o("Plan a route in Google Maps", "구글 지도로 경로 찾기", "วางแผนเส้นทางใน Google Maps")}</h3><form id="route" class="form" style="align-items:end"><label class="f">${o("From", "출발", "จาก")}<input id="rf" type="text" placeholder="${s(o("e.g. BTS Siam", "예: BTS 시암", "เช่น BTS สยาม"))}"></label><label class="f">${o("To", "도착", "ถึง")}<input id="rt" type="text" placeholder="${s(o("e.g. Yaowarat Road", "예: 야오와랏 로드", "เช่น ถนนเยาวราช"))}"></label><label class="f">${o("Mode", "이동 수단", "วิธี")}<select id="rm"><option value="transit">${o("Public transport", "대중교통", "ขนส่งสาธารณะ")}</option><option value="driving">${o("Taxi / Grab (driving)", "택시/그랩 (자동차)", "รถยนต์")}</option><option value="walking">${o("Walking", "도보", "เดิน")}</option></select></label><button class="btn btn--gold">${m("nav", 16)} ${o("Open directions", "길찾기 열기", "นำทาง")}</button></form><p class="muted" style="font-size:12.5px;margin-top:8px">${o("Live travel times and fares come from Google Maps — this guide never guesses them.", "실시간 소요 시간과 요금은 구글 지도가 알려줘요. 이 가이드는 추측으로 적지 않아요.", "เวลาเดินทางและค่าโดยสารปัจจุบันดูได้จาก Google Maps — คู่มือนี้ไม่เดาตัวเลข.")}</p></div>`;
   }
   function si() {
     return `<div class="scroll-x"><table class="cmp"><thead><tr><th>${o("Mode", "수단", "วิธี")}</th><th>${o("Speed", "속도", "ความเร็ว")}</th><th>${o("Comfort", "편안함", "ความสบาย")}</th><th>${o("Cheapness", "저렴함", "ราคา")}</th><th>${o("Easy for first-timers", "초보자 친화도", "ง่ายสำหรับมือใหม่")}</th><th>${o("How you pay", "결제", "จ่ายอย่างไร")}</th></tr></thead><tbody>${Ge.map((e) => `<tr><td><a class="gold" href="#/transport/${e.id}"><b>${s(h(e.name))}</b></a></td><td>${Ye(e.ratings.speed)}</td><td>${Ye(e.ratings.comfort)}</td><td>${Ye(e.ratings.cost)}</td><td>${Ye(e.ratings.easeForFirstTimers)}</td><td style="min-width:220px">${s(h(e.pay))}</td></tr>`).join("")}</tbody></table></div>
-  <p class="muted" style="font-size:12.5px;margin-top:8px">${o("Ratings are our relative guidance (5 = best / cheapest), not measured data. Fares and travel times are intentionally not listed — check the official site or Google Maps.", "평점은 상대적인 참고용이에요 (5 = 가장 좋음/저렴). 요금과 소요 시간은 일부러 적지 않았어요. 공식 사이트나 구글 지도에서 확인하세요.", "")}</p>`;
+  <p class="muted" style="font-size:12.5px;margin-top:8px">${o("Ratings are our relative guidance (5 = best / cheapest), not measured data. Fares and travel times are intentionally not listed — check the official site or Google Maps.", "평점은 상대적인 참고용이에요 (5 = 가장 좋음/저렴). 요금과 소요 시간은 일부러 적지 않았어요. 공식 사이트나 구글 지도에서 확인하세요.", "คะแนนใช้เปรียบเทียบตัวเลือก (5 = ดีที่สุด / ถูกที่สุด), ไม่ได้มาจากการวัดจริง. เราเว้นค่าโดยสารและเวลาเดินทางไว้ — เช็กได้ที่เว็บไซต์ทางการหรือ Google Maps.")}</p>`;
   }
   function ri() {
     let e = oa.find((a) => a.id === ga.ap) || oa[0];
@@ -19589,7 +19589,7 @@
   <h3 style="margin:20px 0 8px">${o("Leaving the airport, step by step", "공항에서 나오는 단계별 가이드", "ออกจากสนามบินทีละขั้น")}</h3><ol class="route">${e.steps.map((a) => `<li>${s(h(a))}</li>`).join("")}</ol>
   <h3 style="margin:20px 0 8px">${o("Your options", "이동 옵션", "ตัวเลือก")}</h3><div class="grid grid--2">${e.options.map((a) => `<div class="panel"><h4 style="margin-bottom:6px">${s(h(a.mode))}</h4><p>${s(h(a.how))}</p><p style="margin-top:6px"><b>${o("Pay", "결제", "จ่าย")}:</b> ${s(h(a.pay))}</p><div class="note note--warn" style="margin-top:8px"><b>${o("Watch out", "주의", "ระวัง")}:</b> ${s(h(a.watchOut))}</div></div>`).join("")}</div>
   ${e.scams?.length ? `<div class="blk"><h4>${o("Airport scams to skip", "공항 바가지·사기 주의", "มิจฉาชีพ")}</h4>${Qe(e.scams)}</div>` : ""}
-  <div class="note" style="margin-top:12px">${m("info", 16)} ${o("Team tip: esports gear cases are big — a pre-booked van or Grab XL is easier than a regular taxi or train with luggage.", "팀 팁: 장비 케이스는 부피가 커요. 일반 택시나 기차보다 사전 예약한 밴이나 그랩 XL이 편해요.", "")}</div>
+  <div class="note" style="margin-top:12px">${m("info", 16)} ${o("Team tip: esports gear cases are big — a pre-booked van or Grab XL is easier than a regular taxi or train with luggage.", "팀 팁: 장비 케이스는 부피가 커요. 일반 택시나 기차보다 사전 예약한 밴이나 그랩 XL이 편해요.", "เคล็ดลับสำหรับทีม: กล่องใส่อุปกรณ์อีสปอร์ตมีขนาดใหญ่ — ถ้าสัมภาระเยอะ จองรถตู้ล่วงหน้าหรือเรียก Grab XL จะสะดวกกว่าแท็กซี่ทั่วไปหรือรถไฟ.")}</div>
   <p style="margin-top:10px"><a class="gold" href="${s(e.official.url)}" target="_blank" rel="noopener">${m("ext", 13)} ${s(e.official.name)}</a></p>`;
   }
   function li() {
@@ -19600,10 +19600,10 @@
   <div class="blk" style="margin-top:20px"><h4>${o("Rules of thumb", "기본 규칙", "กฎเบื้องต้น")}</h4>${Qe(e.rules)}</div>`;
   }
   function hi() {
-    return `<p class="sub">${o("Show the Thai to your driver or ask for directions. Tap to go full-screen.", "택시 기사님께 태국어를 보여주거나 길을 물어보세요. 누르면 전체 화면으로 보여줘요.", "")}</p><div class="grid grid--3">${Ja.map((e) => `<button class="panel" style="text-align:left" data-local='${s(JSON.stringify({ th: e.th, rom: e.rom, en: h(e.name), ko: "" }))}'><div class="gold" lang="th" style="font-size:24px;font-weight:600">${s(e.th)}</div><i>${s(e.rom)}</i><div style="margin-top:4px"><b>${s(h(e.name))}</b></div><div class="muted" style="font-size:12.5px">${s(h(e.hint))}</div></button>`).join("")}</div>`;
+    return `<p class="sub">${o("Show the Thai to your driver or ask for directions. Tap to go full-screen.", "택시 기사님께 태국어를 보여주거나 길을 물어보세요. 누르면 전체 화면으로 보여줘요.", "เปิดข้อความภาษาไทยให้คนขับดู หรือใช้ถามทาง. แตะเพื่อดูเต็มจอ.")}</p><div class="grid grid--3">${Ja.map((e) => `<button class="panel" style="text-align:left" data-local='${s(JSON.stringify({ th: e.th, rom: e.rom, en: h(e.name), ko: "" }))}'><div class="gold" lang="th" style="font-size:24px;font-weight:600">${s(e.th)}</div><i>${s(e.rom)}</i><div style="margin-top:4px"><b>${s(h(e.name))}</b></div><div class="muted" style="font-size:12.5px">${s(h(e.hint))}</div></button>`).join("")}</div>`;
   }
   function ci() {
-    return `<div class="wrap">${A(o("Bangkok Transportation", "방콕 교통 가이드", "การเดินทางในกรุงเทพ"), o("Move like you’ve lived here for years.", "방콕 생활 N년 차처럼 이동하세요.", "เดินทางแบบคนอยู่มานาน"), o("Trains, taxis, boats and airports — how each works, how to pay, and the mistakes first-timers make. Fares and travel times are never guessed here.", "기차, 택시, 보트, 공항까지 — 이용법, 결제 방법, 초보자 실수를 정리했어요. 요금·소요 시간은 추측해서 쓰지 않아요.", ""))}${M()}
+    return `<div class="wrap">${A(o("Bangkok Transportation", "방콕 교통 가이드", "การเดินทางในกรุงเทพ"), o("Move like you’ve lived here for years.", "방콕 생활 N년 차처럼 이동하세요.", "เดินทางแบบคนอยู่มานาน"), o("Trains, taxis, boats and airports — how each works, how to pay, and the mistakes first-timers make. Fares and travel times are never guessed here.", "기차, 택시, 보트, 공항까지 — 이용법, 결제 방법, 초보자 실수를 정리했어요. 요금·소요 시간은 추측해서 쓰지 않아요.", "รถไฟ แท็กซี่ เรือ และสนามบิน — ดูวิธีใช้บริการ วิธีจ่ายเงิน และข้อผิดพลาดที่มือใหม่มักเจอ. คู่มือนี้ไม่เดาค่าโดยสารหรือเวลาเดินทาง."))}${M()}
   <div class="tabs" role="tablist">${di.map(([e, a, t, n]) => `<button class="tab ${ga.tab === e ? "on" : ""}" data-ttab="${e}" role="tab">${s(o(a, t, n))}</button>`).join("")}</div><div id="tbody">${ho()}</div></div>`;
   }
   function pi(e) {
@@ -19655,7 +19655,7 @@
   <div class="blk"><h4>${o("First-timer tips", "초보자 팁", "เคล็ดลับ")}</h4>${Qe(a.tips)}</div><div class="blk"><h4>${o("Safety", "안전", "ความปลอดภัย")}</h4>${Qe(a.safety)}</div><div class="blk"><h4>${o("Common mistakes", "흔한 실수", "ความผิดพลาดที่พบบ่อย")}</h4>${Qe(a.mistakes)}</div>
   <div class="blk"><h4>${o("Helpful apps", "유용한 앱", "แอปที่มีประโยชน์")}</h4>${(a.apps || []).map((n) => `<p><b>${s(n.name)}</b> — ${s(h(n.note))}</p>`).join("")}</div>
   <div class="row"><a class="btn btn--gold btn--sm" href="${s(a.official.url)}" target="_blank" rel="noopener">${m("ext", 16)} ${s(a.official.name)}</a><a class="btn btn--ghost btn--sm" href="https://www.google.com/maps/dir/?api=1&travelmode=${a.id === "bts-skytrain" || a.id === "mrt" || a.id === "airport-rail-link" || a.id === "public-bus" || a.id === "chao-phraya-boat" ? "transit" : "driving"}" target="_blank" rel="noopener">${m("nav", 16)} ${o("Open Google Maps", "구글 지도 열기", "เปิด Google Maps")}</a></div>
-  ${a.source ? `<p class="muted" style="font-size:12.5px;margin-top:10px">${o("Source", "출처", "แหล่งที่มา")}: <a class="gold" href="${s(a.source.url)}" target="_blank" rel="noopener">${s(a.source.name)}</a> · ${o("checked", "확인일", "ตรวจสอบเมื่อ")} ${s(a.source.checked)}</p>` : `<p class="muted" style="font-size:12.5px;margin-top:10px">${o("Not date-verified — confirm on the official site.", "날짜 확인 안 됨 — 공식 사이트에서 확인하세요.", "")}</p>`}${t ? fe(t) : ""}</div>`,
+  ${a.source ? `<p class="muted" style="font-size:12.5px;margin-top:10px">${o("Source", "출처", "แหล่งที่มา")}: <a class="gold" href="${s(a.source.url)}" target="_blank" rel="noopener">${s(a.source.name)}</a> · ${o("checked", "확인일", "ตรวจสอบเมื่อ")} ${s(a.source.checked)}</p>` : `<p class="muted" style="font-size:12.5px;margin-top:10px">${o("Not date-verified — confirm on the official site.", "날짜 확인 안 됨 — 공식 사이트에서 확인하세요.", "ยังไม่ได้ยืนยันวันที่ — เช็กอีกครั้งที่เว็บไซต์ทางการ.")}</p>`}${t ? fe(t) : ""}</div>`,
       { onClose: () => history.replaceState(null, "", "#/transport") },
     );
   }
@@ -19718,11 +19718,11 @@
           .map($a)
           .join("")}</div>`
       : Ie.tab === "snacks"
-        ? `<div class="grid grid--cards">${aa.map((e) => `<article class="card">${F(`snack/${e.id}`, { alt: e.imgAlt || h(e.name), illustrative: e.imgIllustrative, label: h(e.name) })}${Y("snack", e.id)}<div class="card__b"><div class="meta"><span>${s(o(...(ui[e.kind] || ["Item", "아이템"])))}</span><span>${e.price ? `${e.price[0]}–${e.price[1]} THB` : ""}</span></div><h3>${s(h(e.name))}</h3><div class="th" lang="th">${s(e.name.th || "")}</div><p style="-webkit-line-clamp:unset">${s(h(e.desc))}</p></div></article>`).join("")}</div><p class="muted" style="font-size:12.5px;margin-top:10px">${o("Prices are rough estimates.", "가격은 대략적인 추정치예요.", "")}</p>`
+        ? `<div class="grid grid--cards">${aa.map((e) => `<article class="card">${F(`snack/${e.id}`, { alt: e.imgAlt || h(e.name), illustrative: e.imgIllustrative, label: h(e.name) })}${Y("snack", e.id)}<div class="card__b"><div class="meta"><span>${s(o(...(ui[e.kind] || ["Item", "아이템"])))}</span><span>${e.price ? `${e.price[0]}–${e.price[1]} THB` : ""}</span></div><h3>${s(h(e.name))}</h3><div class="th" lang="th">${s(e.name.th || "")}</div><p style="-webkit-line-clamp:unset">${s(h(e.desc))}</p></div></article>`).join("")}</div><p class="muted" style="font-size:12.5px;margin-top:10px">${o("Prices are rough estimates.", "가격은 대략적인 추정치예요.", "ราคาเป็นค่าประมาณ.")}</p>`
         : `<div class="scroll-x"><table class="cmp"><thead><tr><th>${o("Topic", "주제", "หัวข้อ")}</th><th>🇰🇷 ${o("Korea", "한국", "เกาหลี")}</th><th>🇹🇭 ${o("Thailand", "태국", "ไทย")}</th></tr></thead><tbody>${Va.map((e) => `<tr><td><b>${s(h(e.topic))}</b></td><td>${s(h(e.korea))}</td><td>${s(h(e.thailand))}</td></tr>`).join("")}</tbody></table></div>`;
   }
   function ki() {
-    return `<div class="wrap">${A(o("Shopping & Daily Essentials", "쇼핑 & 생활 필수품", "ช้อปปิ้งและของใช้ประจำวัน"), o("Everything you forgot to pack.", "깜빡하고 안 챙긴 것들, 여기 다 있어요.", "ของที่ลืมเอามา"), o("Malls, 24-hour convenience stores, SIMs, pharmacies and laundry — with notes on how it differs from Korea.", "쇼핑몰, 24시간 편의점, 유심, 약국, 빨래방까지 — 한국과 뭐가 다른지도 알려드려요.", ""))}${M()}
+    return `<div class="wrap">${A(o("Shopping & Daily Essentials", "쇼핑 & 생활 필수품", "ช้อปปิ้งและของใช้ประจำวัน"), o("Everything you forgot to pack.", "깜빡하고 안 챙긴 것들, 여기 다 있어요.", "ของที่ลืมเอามา"), o("Malls, 24-hour convenience stores, SIMs, pharmacies and laundry — with notes on how it differs from Korea.", "쇼핑몰, 24시간 편의점, 유심, 약국, 빨래방까지 — 한국과 뭐가 다른지도 알려드려요.", "ห้าง ร้านสะดวกซื้อ 24 ชั่วโมง ซิมการ์ด ร้านขายยา และร้านซักรีด — พร้อมเกร็ดน่ารู้ว่าต่างจากเกาหลียังไง."))}${M()}
   <div class="tabs" role="tablist">${gi.map(([e, a, t, n]) => `<button class="tab ${Ie.tab === e ? "on" : ""}" data-stab="${e}" role="tab">${s(o(a, t, n))}</button>`).join("")}</div><div id="sbody">${co()}</div></div>`;
   }
   function fi(e) {
@@ -19815,7 +19815,7 @@
                 o(
                   "Remove a filter or two — “Free” + “Indoor” + “Late night” is a tough combo.",
                   "필터를 한두 개 빼보세요. “무료+실내+심야”는 조합이 까다로워요.",
-                  "",
+                  "ลองเอาตัวกรองออกสักข้อสองข้อ — “ฟรี” + “ในร่ม” + “ดึก” หาได้ยากเมื่อเลือกพร้อมกัน.",
                 ),
                 `<button class="btn btn--gold btn--sm" id="x-reset">${o("Reset filters", "필터 초기화", "ล้างตัวกรอง")}</button>`,
               ))
@@ -19939,8 +19939,8 @@
         festival: ["Festival", "축제"],
       };
     return `<section class="section" style="padding-top:0"><span class="kicker">${o("What’s trending in Bangkok?", "지금 방콕에서 핫한 것", "กำลังมาแรงในกรุงเทพ")}</span><h2 class="h2" style="margin-top:8px">${o("Verified this season", "이번 시즌 확인된 소식", "ข้อมูลที่ตรวจสอบแล้ว")}</h2>
-  <p class="sub">${o("Only items we checked against a reliable source on the date shown. Dates can change — tap the source before planning around anything.", "신뢰할 만한 출처로 표시된 날짜에 직접 확인한 항목만 모았어요. 일정은 바뀔 수 있으니 계획 전에 출처를 확인하세요.", "")}</p>
-  ${a.length ? `<div class="chips" style="scroll-snap-type:x mandatory">${a.map((n) => `<article class="panel" style="flex:none;width:min(86vw,360px);scroll-snap-align:start;display:flex;flex-direction:column;gap:8px"><div class="row"><span class="tag tag--gold">${s(o(...(t[n.kind] || ["Update", "소식"])))}</span>${n.dates ? `<span class="tag">${s(n.dates.replace(" to ", " → "))}</span>` : ""}</div><h3 style="font-size:18px">${s(h(n.title))}</h3><p style="font-size:13.5px">${s(h(n.blurb))}</p><p class="muted" style="font-size:12.5px">${m("pin", 13)} ${s(h(n.where))}</p><div style="margin-top:auto" class="row"><a class="gold" style="font-size:12.5px" href="${s(n.source.url)}" target="_blank" rel="noopener">${m("ext", 13)} ${s(n.source.name)}</a><span class="muted" style="font-size:12px">· ${o("checked", "확인일", "")} ${s(n.checked)}</span></div></article>`).join("")}</div>` : `<div class="note">${o("No verified time-sensitive items right now — we’d rather show nothing than guess.", "지금 확인된 시즌 소식이 없어요. 추측해서 보여주느니 비워 두는 게 나아요.", "")}</div>`}</section><hr class="rule">`;
+  <p class="sub">${o("Only items we checked against a reliable source on the date shown. Dates can change — tap the source before planning around anything.", "신뢰할 만한 출처로 표시된 날짜에 직접 확인한 항목만 모았어요. 일정은 바뀔 수 있으니 계획 전에 출처를 확인하세요.", "เราแสดงเฉพาะรายการที่ตรวจสอบกับแหล่งข้อมูลที่เชื่อถือได้ ณ วันที่ระบุ. กำหนดการอาจเปลี่ยนได้ — แตะดูแหล่งข้อมูลก่อนวางแผน.")}</p>
+  ${a.length ? `<div class="chips" style="scroll-snap-type:x mandatory">${a.map((n) => `<article class="panel" style="flex:none;width:min(86vw,360px);scroll-snap-align:start;display:flex;flex-direction:column;gap:8px"><div class="row"><span class="tag tag--gold">${s(o(...(t[n.kind] || ["Update", "소식"])))}</span>${n.dates ? `<span class="tag">${s(n.dates.replace(" to ", " → "))}</span>` : ""}</div><h3 style="font-size:18px">${s(h(n.title))}</h3><p style="font-size:13.5px">${s(h(n.blurb))}</p><p class="muted" style="font-size:12.5px">${m("pin", 13)} ${s(h(n.where))}</p><div style="margin-top:auto" class="row"><a class="gold" style="font-size:12.5px" href="${s(n.source.url)}" target="_blank" rel="noopener">${m("ext", 13)} ${s(n.source.name)}</a><span class="muted" style="font-size:12px">· ${o("checked", "확인일", "ตรวจสอบเมื่อ")} ${s(n.checked)}</span></div></article>`).join("")}</div>` : `<div class="note">${o("No verified time-sensitive items right now — we’d rather show nothing than guess.", "지금 확인된 시즌 소식이 없어요. 추측해서 보여주느니 비워 두는 게 나아요.", "ตอนนี้ยังไม่มีรายการที่ยืนยันกำหนดการได้ — เราขอเว้นไว้จนกว่าจะแน่ใจ.")}</div>`}</section><hr class="rule">`;
   }
   var bi,
     _t,
@@ -19966,7 +19966,7 @@
           o(
             "Cafés, photo booths, night food walks, cycling and team activities — the Bangkok you actually want to spend a free afternoon on.",
             "카페, 포토부스, 야식 투어, 자전거, 팀 액티비티까지 — 자유 시간에 진짜 가고 싶은 방콕.",
-            "",
+            "คาเฟ่ ตู้ถ่ายรูป เดินชิมของกินยามค่ำ ปั่นจักรยาน และกิจกรรมกับทีม — ให้คุณเลือกใช้เวลาช่วงบ่ายว่าง ๆ ในกรุงเทพได้อย่างที่ชอบ.",
           ),
         extraTop: vi,
       })),
@@ -19975,7 +19975,7 @@
   var It = {};
   q(It, { render: () => Pi });
   function Ai() {
-    return `<div class="wrap">${A(o("Neighborhood Explorer", "동네 탐험", "สำรวจย่าน"), o("Twelve neighborhoods. Twelve moods.", "열두 개의 동네, 열두 가지 무드.", "12 ย่าน 12 อารมณ์"), o("Pick a mood, not just a place. Each guide has a sample route, a budget and the nearest stations or piers.", "장소보다 분위기를 고르세요. 동네마다 샘플 코스, 예산, 가까운 역·선착장을 담았어요.", ""))}${M()}
+    return `<div class="wrap">${A(o("Neighborhood Explorer", "동네 탐험", "สำรวจย่าน"), o("Twelve neighborhoods. Twelve moods.", "열두 개의 동네, 열두 가지 무드.", "12 ย่าน 12 อารมณ์"), o("Pick a mood, not just a place. Each guide has a sample route, a budget and the nearest stations or piers.", "장소보다 분위기를 고르세요. 동네마다 샘플 코스, 예산, 가까운 역·선착장을 담았어요.", "เลือกย่านตามบรรยากาศที่อยากได้. คู่มือแต่ละย่านมีตัวอย่างเส้นทาง งบประมาณ และสถานีหรือท่าเรือที่ใกล้ที่สุด."))}${M()}
   <div class="bento">${be.map((e, a) => Pa(e).replace('class="tile hood-card"', `class="tile hood-card ${a === 0 || a === 5 ? "tile--wide" : ""}"`)).join("")}</div>
   <div class="row" style="margin-top:18px"><a class="btn btn--ghost" href="#/map">${m("map", 16)} ${o("See all on the map", "지도로 보기", "ดูบนแผนที่")}</a></div></div>`;
   }
@@ -19993,9 +19993,9 @@
   <div class="row" style="margin-top:14px">${$e(e.mapsQuery || e.name.en + " Bangkok")}${t ? `<a class="btn btn--ghost btn--sm" href="#/map?focus=hood/${e.id}">${m("map", 16)} ${o("On map", "지도에서", "บนแผนที่")}</a>` : ""}${Y("hood", e.id)}</div></div></div>
   ${i(o("Best food", "맛집", "อาหาร"), e.food)}${i(o("Cafés", "카페", "คาเฟ่"), e.cafes)}${i(o("Shopping", "쇼핑", "ช้อปปิ้ง"), e.shopping)}
   <section class="blk"><h4>${o("Things to do", "할 거리", "กิจกรรม")}</h4><ul>${e.activities.map((r) => `<li>${s(h(r))}</li>`).join("")}</ul></section>
-  <section class="blk"><h4>${o("Sample walking route", "샘플 산책 코스", "เส้นทางเดินตัวอย่าง")}</h4><ol class="route">${e.route.map((r) => `<li>${s(h(r))}</li>`).join("")}</ol><p class="muted" style="font-size:12.5px">${o("Walking times depend on heat and crowds — open the stops in Google Maps for live directions.", "도보 시간은 더위와 인파에 따라 달라요. 구글 지도에서 실시간 길찾기를 확인하세요.", "")}</p></section>
+  <section class="blk"><h4>${o("Sample walking route", "샘플 산책 코스", "เส้นทางเดินตัวอย่าง")}</h4><ol class="route">${e.route.map((r) => `<li>${s(h(r))}</li>`).join("")}</ol><p class="muted" style="font-size:12.5px">${o("Walking times depend on heat and crowds — open the stops in Google Maps for live directions.", "도보 시간은 더위와 인파에 따라 달라요. 구글 지도에서 실시간 길찾기를 확인하세요.", "เวลาเดินขึ้นอยู่กับอากาศและความหนาแน่นของคน — เปิดแต่ละจุดใน Google Maps เพื่อดูเส้นทางปัจจุบัน.")}</p></section>
   ${n.length ? `<section class="blk"><h4>${o("Experiences here", "이 동네의 경험", "ประสบการณ์ในย่านนี้")}</h4><div class="grid grid--cards">${n.map((r) => de(r, r.id.startsWith("gem-") ? "gem" : "exp")).join("")}</div></section>` : ""}${fe(`hood/${e.id}`)}
-  <p class="muted" style="font-size:12.5px;margin-top:12px">${o("Venue details change — we haven’t verified current opening hours. Confirm on Google Maps.", "매장 정보는 바뀔 수 있고, 영업시간은 확인하지 못했어요. 구글 지도에서 확인하세요.", "")}</p></div></div>`;
+  <p class="muted" style="font-size:12.5px;margin-top:12px">${o("Venue details change — we haven’t verified current opening hours. Confirm on Google Maps.", "매장 정보는 바뀔 수 있고, 영업시간은 확인하지 못했어요. 구글 지도에서 확인하세요.", "ข้อมูลสถานที่อาจเปลี่ยนได้ — เรายังไม่ได้ยืนยันเวลาเปิดล่าสุด. เช็กอีกครั้งใน Google Maps.")}</p></div></div>`;
   }
   function Pi({ parts: e }) {
     let a = e[0] && E("hood", e[0]);
@@ -20034,7 +20034,7 @@
           o(
             "Quiet temples, old markets, river alleys and neighborhood corners. Honest notes on what to expect — no filler.",
             "조용한 사원, 오래된 시장, 강가 골목과 동네 구석구석. 어떤 곳인지 군더더기 없이 솔직하게 적었어요.",
-            "",
+            "วัดเงียบสงบ ตลาดเก่า ตรอกริมน้ำ และมุมเล็ก ๆ ในแต่ละย่าน. อ่านก่อนไปว่าแต่ละที่มีอะไร — เล่าให้ตรงประเด็น.",
           ),
       })),
         ({ render: _i, mount: Ri, detail: Ei } = $i);
@@ -20258,8 +20258,8 @@
       a = ha[e];
     _e(
       `${h(a.name)} — ${h(a.line)}
-${o("From Seoul to Bangkok. Stay gold.", "서울에서 방콕까지. Stay gold.", "")}`,
-      o("Result copied — paste it anywhere", "결과를 복사했어요. 어디든 붙여넣어 공유하세요", ""),
+${o("From Seoul to Bangkok. Stay gold.", "서울에서 방콕까지. Stay gold.", "จากโซลถึงกรุงเทพ. เปล่งประกายต่อไปนะ.")}`,
+      o("Result copied — paste it anywhere", "결과를 복사했어요. 어디든 붙여넣어 공유하세요", "คัดลอกผลแล้ว — วางได้เลย"),
     );
   }
   function fo() {
@@ -20267,7 +20267,7 @@ ${o("From Seoul to Bangkok. Stay gold.", "서울에서 방콕까지. Stay gold."
       a = new Set(e.flat());
     return `<div class="row row--between" style="max-width:640px;margin:0 auto 12px"><div><span class="stat">${uo.filter((n) => w.isDone(n.id)).length}/25</span> <span class="muted">${o("missions", "미션", "ภารกิจ")} · ${e.length}${o(" lines", "줄", " แถว")}</span></div><button class="btn btn--ghost btn--sm" id="b-reset">${o("Reset board", "보드 초기화", "รีเซ็ต")}</button></div>
   <div class="bingo" role="grid" aria-label="Bangkok Bingo">${uo.map((n, i) => `<button class="bc ${w.isDone(n.id) ? "on" : ""} ${a.has(i) ? "line" : ""}" data-b="${n.id}" aria-pressed="${w.isDone(n.id)}">${s(Qt(n))}</button>`).join("")}</div>
-  <p class="muted" style="text-align:center;margin-top:12px;font-size:13px">${o("Tap a mission when you’ve done it. Complete a row, column or diagonal for a gold celebration. Progress is saved on this device.", "미션을 완료하면 눌러서 체크하세요. 가로·세로·대각선 한 줄을 완성하면 골드 축하 효과가 나와요. 진행 상황은 이 기기에 저장돼요.", "")}</p>`;
+  <p class="muted" style="text-align:center;margin-top:12px;font-size:13px">${o("Tap a mission when you’ve done it. Complete a row, column or diagonal for a gold celebration. Progress is saved on this device.", "미션을 완료하면 눌러서 체크하세요. 가로·세로·대각선 한 줄을 완성하면 골드 축하 효과가 나와요. 진행 상황은 이 기기에 저장돼요.", "ทำภารกิจไหนเสร็จแล้ว ให้แตะภารกิจนั้น. ทำให้ครบหนึ่งแถวในแนวนอน แนวตั้ง หรือแนวทแยง เพื่อฉลองด้วยประกายสีทอง. ระบบบันทึกความคืบหน้าไว้ในเครื่องนี้.")}</p>`;
   }
   function Wi(e) {
     let a = e.getBoundingClientRect(),
@@ -20291,7 +20291,7 @@ ${o("From Seoul to Bangkok. Stay gold.", "서울에서 방콕까지. Stay gold."
     let t = { total: me.filter((i) => e.has(i.id)).length, cat: a, done: e, quizBest: w.get("quiz").best },
       n = la.filter((i) => i.test(t));
     return `<div class="pass"><div class="row row--between"><div><span class="kicker">${o("Gen.G-inspired · fan edition", "Gen.G 감성 · 팬 에디션", "ฉบับแฟนคลับ")}</span><h2 style="font-size:30px;margin:6px 0">${o("Bangkok Passport", "방콕 패스포트", "พาสปอร์ตบางกอก")}</h2></div><div style="text-align:right"><div class="stat">${t.total}/${me.length}</div><div class="muted" style="font-size:12px">${o("stamps", "스탬프", "แสตมป์")}</div></div></div><div class="bar" style="margin:8px 0 4px"><i style="width:${(t.total / me.length) * 100}%"></i></div>
-  <p class="muted" style="font-size:12px">${o("Virtual achievements for fun only — not connected to any official Gen.G membership or rewards.", "재미를 위한 가상 업적이에요. Gen.G 공식 멤버십·리워드와 무관해요.", "")}</p></div>
+  <p class="muted" style="font-size:12px">${o("Virtual achievements for fun only — not connected to any official Gen.G membership or rewards.", "재미를 위한 가상 업적이에요. Gen.G 공식 멤버십·리워드와 무관해요.", "ความสำเร็จในเกมมีไว้เพื่อความสนุกเท่านั้น — ไม่เกี่ยวกับสมาชิกหรือรางวัลอย่างเป็นทางการของ Gen.G.")}</p></div>
   <h3 style="margin:20px 0 10px">${o("Badges", "배지", "เหรียญ")} · ${n.length}/${la.length}</h3><div class="grid grid--3">${la.map((i) => `<div class="badge ${n.includes(i) ? "on" : ""}"><span class="badge__i">${m("award", 24)}</span><div><b>${s(h(i.name))}</b><div class="muted" style="font-size:12.5px">${s(h(i.rule))}</div></div></div>`).join("")}</div>
   ${to
     .map(
@@ -20333,14 +20333,14 @@ ${o("From Seoul to Bangkok. Stay gold.", "서울에서 방콕까지. Stay gold."
           "Food",
           "음식",
           "food",
-          `≈ ${Math.max(1, Math.floor(t.food / i))}${o(" typical street/local meals", "끼의 일반적인 노점·로컬 식사", "")} (~${Math.round(i)} THB)`,
+          `≈ ${Math.max(1, Math.floor(t.food / i))}${o(" typical street/local meals", "끼의 일반적인 노점·로컬 식사", " มื้อที่ร้านข้างทางหรือร้านท้องถิ่นทั่วไป")} (~${Math.round(i)} THB)`,
         ],
         [
           "drinks",
           "Drinks & coffee",
           "음료·커피",
           "coffee",
-          `≈ ${Math.max(1, Math.floor(t.drinks / r))}${o(" drinks", "잔", "")} (~${Math.round(r)} THB)`,
+          `≈ ${Math.max(1, Math.floor(t.drinks / r))}${o(" drinks", "잔", " แก้ว")} (~${Math.round(r)} THB)`,
         ],
         [
           "transport",
@@ -20350,7 +20350,7 @@ ${o("From Seoul to Bangkok. Stay gold.", "서울에서 방콕까지. Stay gold."
           o(
             "BTS/MRT, boats and a few Grab rides — fares vary; check the apps",
             "BTS/MRT, 보트, 그랩 몇 번 — 요금은 앱에서 확인",
-            "",
+            "BTS/MRT, เรือ และ Grab อีกสองสามเที่ยว — ค่าโดยสารเปลี่ยนได้; เช็กในแอป",
           ),
         ],
         [
@@ -20358,14 +20358,14 @@ ${o("From Seoul to Bangkok. Stay gold.", "서울에서 방콕까지. Stay gold."
           "Activities",
           "액티비티",
           "camera",
-          `≈ ${Math.max(0, Math.floor(t.activities / l))}${o(" typical paid activities", "개의 유료 액티비티", "")} (~${Math.round(l)} THB)`,
+          `≈ ${Math.max(0, Math.floor(t.activities / l))}${o(" typical paid activities", "개의 유료 액티비티", " กิจกรรมแบบเสียเงินในราคาทั่วไป")} (~${Math.round(l)} THB)`,
         ],
         [
           "shopping",
           "Shopping & snacks",
           "쇼핑·간식",
           "bag",
-          o("Souvenirs, skincare or 7-Eleven snacks", "기념품·스킨케어·세븐일레븐 간식", ""),
+          o("Souvenirs, skincare or 7-Eleven snacks", "기념품·스킨케어·세븐일레븐 간식", "ของฝาก สกินแคร์ หรือขนมจาก 7-Eleven"),
         ],
       ];
     return `<div class="split"><div class="panel"><label class="f">${o("Total budget per person (THB)", "인당 총 예산 (바트)", "งบรวมต่อคน")}: <b class="gold" id="b-out">${X.total}</b><input id="b-rng" type="range" min="300" max="6000" step="100" value="${X.total}"></label><h5 style="font:600 10.5px var(--f-head);letter-spacing:.22em;color:var(--muted);text-transform:uppercase;margin:14px 0 4px">${o("Preferences", "선호", "ความชอบ")}</h5><div class="chips chips--wrap">${[
@@ -20378,7 +20378,7 @@ ${o("From Seoul to Bangkok. Stay gold.", "서울에서 방콕까지. Stay gold."
     ]
       .map(([d, g, y]) => C(s(o(g, y, g)), `data-bp="${d}"`, X.prefs.has(d)))
       .join("")}</div></div>
-  <div class="panel panel--gold"><h3 style="margin-bottom:10px">${o("Illustrative spending plan", "예시 지출 계획", "แผนการใช้จ่าย")}</h3>${p.map(([d, g, y, k, f]) => `<div style="margin:12px 0"><div class="row row--between"><b>${m(k, 16)} ${s(o(g, y, g))}</b><span class="gold">≈ ${t[d]} THB</span></div><div class="bar" style="margin:6px 0"><i style="width:${(t[d] / X.total) * 100}%"></i></div><div class="muted" style="font-size:12.5px">${f}</div></div>`).join("")}<div class="note">${o("Estimates only. Based on typical prices in this guide’s data, not live prices.", "추정치예요. 이 가이드 데이터의 일반적인 가격을 기준으로 했고 실시간 가격이 아니에요.", "")}</div></div></div>`;
+  <div class="panel panel--gold"><h3 style="margin-bottom:10px">${o("Illustrative spending plan", "예시 지출 계획", "แผนการใช้จ่าย")}</h3>${p.map(([d, g, y, k, f]) => `<div style="margin:12px 0"><div class="row row--between"><b>${m(k, 16)} ${s(o(g, y, g))}</b><span class="gold">≈ ${t[d]} THB</span></div><div class="bar" style="margin:6px 0"><i style="width:${(t[d] / X.total) * 100}%"></i></div><div class="muted" style="font-size:12.5px">${f}</div></div>`).join("")}<div class="note">${o("Estimates only. Based on typical prices in this guide’s data, not live prices.", "추정치예요. 이 가이드 데이터의 일반적인 가격을 기준으로 했고 실시간 가격이 아니에요.", "เป็นเพียงค่าประมาณ. คำนวณจากราคาทั่วไปในคู่มือนี้ ไม่ใช่ราคาแบบเรียลไทม์.")}</div></div></div>`;
   }
   function Ht() {
     return {
@@ -20394,7 +20394,7 @@ ${o("From Seoul to Bangkok. Stay gold.", "서울에서 방콕까지. Stay gold."
   function Oi({ parts: e, name: a }) {
     return (
       (ne = Gt.some((t) => t[0] === e[0]) ? e[0] : ne),
-      `<div class="wrap">${A(o("Interactive Playground", "인터랙티브 플레이그라운드", "สนามเล่น"), o("Spin. Quiz. Play. Repeat.", "돌리고, 풀고, 놀고, 또 해보세요.", "หมุน ตอบ เล่น ซ้ำ"), o("Four mini-games that double as a Bangkok to-do list.", "방콕 투두 리스트가 되어주는 4가지 미니게임.", ""))}${M()}
+      `<div class="wrap">${A(o("Interactive Playground", "인터랙티브 플레이그라운드", "สนามเล่น"), o("Spin. Quiz. Play. Repeat.", "돌리고, 풀고, 놀고, 또 해보세요.", "หมุน ตอบ เล่น ซ้ำ"), o("Four mini-games that double as a Bangkok to-do list.", "방콕 투두 리스트가 되어주는 4가지 미니게임.", "มินิเกมสี่เกมที่ใช้เป็นลิสต์สิ่งที่อยากทำในกรุงเทพได้ด้วย."))}${M()}
   <div class="tabs" role="tablist">${Gt.map(([t, n, i, r]) => `<button class="tab ${ne === t ? "on" : ""}" data-pt="${t}" role="tab" aria-selected="${ne === t}">${m(Ii[r], 17)} ${s(o(n, i, n))}</button>`).join("")}</div><div id="pbody">${Ht()}</div></div>`
     );
   }
@@ -20440,7 +20440,7 @@ ${o("From Seoul to Bangkok. Stay gold.", "서울에서 방콕까지. Stay gold."
           if (r.closest("#v-copy")) {
             let d = ha[w.get("vibe")];
             _e(`${h(d.name)} — ${h(d.line)}
-${o("From Seoul to Bangkok. Stay gold.", "서울에서 방콕까지. Stay gold.", "")}`);
+${o("From Seoul to Bangkok. Stay gold.", "서울에서 방콕까지. Stay gold.", "จากโซลถึงกรุงเทพ. เปล่งประกายต่อไปนะ.")}`);
             return;
           }
         }
@@ -20589,9 +20589,9 @@ ${o("From Seoul to Bangkok. Stay gold.", "서울에서 방콕까지. Stay gold."
         (ko = () => Hi.filter((e) => e.every((a) => w.isDone(uo[a].id))));
       (Ve = [Da(Ca)]),
         (Kt = () =>
-          `<div class="panel panel--gold" style="text-align:center;padding:30px 20px"><span class="kicker" style="justify-content:center">${o("Your mission", "오늘의 미션", "ภารกิจ")}</span><p style="font:600 clamp(22px,4vw,32px)/1.3 var(--f-head);margin:14px auto;max-width:640px;color:#fff">${s(I() === "ko" ? Ve[0].ko : Ve[0].en)}</p><button class="btn btn--gold" id="c-new">${m("refresh", 16)} ${o("New challenge", "새 챌린지", "ภารกิจใหม่")}</button><p class="muted" style="font-size:12.5px;margin-top:12px">${o("Always stay safe, respect local rules and hotel/team schedules.", "안전과 현지 규칙, 팀 일정을 최우선으로 하세요.", "")}</p></div>${
+          `<div class="panel panel--gold" style="text-align:center;padding:30px 20px"><span class="kicker" style="justify-content:center">${o("Your mission", "오늘의 미션", "ภารกิจ")}</span><p style="font:600 clamp(22px,4vw,32px)/1.3 var(--f-head);margin:14px auto;max-width:640px;color:#fff">${s(I() === "ko" ? Ve[0].ko : Ve[0].en)}</p><button class="btn btn--gold" id="c-new">${m("refresh", 16)} ${o("New challenge", "새 챌린지", "ภารกิจใหม่")}</button><p class="muted" style="font-size:12.5px;margin-top:12px">${o("Always stay safe, respect local rules and hotel/team schedules.", "안전과 현지 규칙, 팀 일정을 최우선으로 하세요.", "ดูแลตัวเองให้ปลอดภัยเสมอ เคารพกฎท้องถิ่น และทำตามตารางของโรงแรมและทีม.")}</p></div>${
             Ve.length > 1
-              ? `<h4 style="margin:18px 0 6px;color:var(--muted);font-size:13px">${o("Earlier", "이전 챌린지", "")}</h4>${Ve.slice(
+              ? `<h4 style="margin:18px 0 6px;color:var(--muted);font-size:13px">${o("Earlier", "이전 챌린지", "ชาเลนจ์ก่อนหน้า")}</h4>${Ve.slice(
                   1,
                   4,
                 )
@@ -20810,7 +20810,7 @@ ${o("From Seoul to Bangkok. Stay gold.", "서울에서 방콕까지. Stay gold."
 `) +
       `
 
-${o("Estimates only — check Google Maps for hours and live travel times.", "모든 정보는 추정치예요. 영업시간과 이동 시간은 구글 지도에서 확인하세요.", "")}`
+${o("Estimates only — check Google Maps for hours and live travel times.", "모든 정보는 추정치예요. 영업시간과 이동 시간은 구글 지도에서 확인하세요.", "เป็นเพียงค่าประมาณ — เช็กเวลาเปิดและเวลาเดินทางปัจจุบันใน Google Maps.")}`
     );
   }
   function os() {
@@ -20832,7 +20832,7 @@ ${o("Estimates only — check Google Maps for hours and live travel times.", "�
   function ts(e, a, t) {
     return `${a > 0 ? `<div class="travel">${m("nav", 13)} ${o(`Planning buffer ≈ ${Be} min (allowance, not a routing estimate)`, `이동 여유 약 ${Be}분 (계획용 여유 시간, 실제 경로 계산 아님)`, `เผื่อเวลา ${Be} นาที`)}${e.dist != null ? ` · ${o("straight-line", "직선거리", "ระยะตรง")} ≈ ${e.dist.toFixed(1)} km` : ""} · <a class="gold" href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(e.geo ? e.geo.join(",") : e.q)}" target="_blank" rel="noopener">${o("live directions", "실시간 길찾기", "นำทางแบบเรียลไทม์")}</a></div>` : ""}
   <article class="stop" data-i="${a}">${F(e.imgKey, { alt: e.alt, illustrative: e.illustrative, label: e.title })}<div class="stop__b"><div class="stop__t">${a + 1} · ${He(e.at)} → ${He(e.at + e.dur)} · ${e.dur} min</div><h3 style="font-size:19px;margin:4px 0">${s(e.title)}</h3>${e.th ? `<div class="gold" lang="th">${s(e.th)}</div>` : ""}<p style="font-size:13.5px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden">${s(e.desc)}</p>
-  <div class="meta muted" style="font-size:12.5px;display:flex;gap:6px 14px;flex-wrap:wrap;margin-top:6px"><span>${m("coins", 13)} ~${e.cost[1] === 0 ? o("Free", "무료", "ฟรี") : `${e.cost[0]}–${e.cost[1]} THB`} ${o("pp (est.)", "인당(추정)", "")}</span>${e.area ? `<span>${m("pin", 13)} ${s(J(e.area))}</span>` : ""}</div>${e.transit ? `<div class="muted" style="font-size:12.5px;margin-top:4px">${m("train", 13)} ${s(e.transit)}</div>` : ""}
+  <div class="meta muted" style="font-size:12.5px;display:flex;gap:6px 14px;flex-wrap:wrap;margin-top:6px"><span>${m("coins", 13)} ~${e.cost[1] === 0 ? o("Free", "무료", "ฟรี") : `${e.cost[0]}–${e.cost[1]} THB`} ${o("pp (est.)", "인당(추정)", "ต่อคน (โดยประมาณ)")}</span>${e.area ? `<span>${m("pin", 13)} ${s(J(e.area))}</span>` : ""}</div>${e.transit ? `<div class="muted" style="font-size:12.5px;margin-top:4px">${m("train", 13)} ${s(e.transit)}</div>` : ""}
   <div class="stop__act"><button class="btn btn--ghost btn--sm" data-up="${a}" ${a === 0 ? "disabled" : ""} aria-label="${o("Move up", "위로", "ขึ้น")}">${m("arrowUp", 15)}</button><button class="btn btn--ghost btn--sm" data-down="${a}" ${a === t - 1 ? "disabled" : ""} aria-label="${o("Move down", "아래로", "ลง")}">${m("arrowDown", 15)}</button><button class="btn btn--ghost btn--sm" data-rep="${a}">${m("refresh", 15)} ${o("Replace", "교체", "เปลี่ยน")}</button><button class="btn btn--ghost btn--sm" data-del="${a}">${m("trash", 15)} ${o("Remove", "삭제", "ลบ")}</button><a class="btn btn--ghost btn--sm" href="${e.link}">${o("Details", "상세", "รายละเอียด")}</a><a class="btn btn--ghost btn--sm" href="${Pe(e.q)}" target="_blank" rel="noopener">${m("pin", 15)} Maps</a></div></div></article>`;
   }
   function Ha() {
@@ -20840,23 +20840,23 @@ ${o("Estimates only — check Google Maps for hours and live travel times.", "�
     if (!P.length)
       return ye(
         o("No stops left", "남은 일정이 없어요", "ไม่มีจุดแวะ"),
-        o("Regenerate or loosen your filters.", "다시 생성하거나 조건을 완화해 보세요.", ""),
+        o("Regenerate or loosen your filters.", "다시 생성하거나 조건을 완화해 보세요.", "ลองสร้างแผนใหม่หรือเลือกตัวกรองให้น้อยลง."),
         `<button class="btn btn--gold" id="pl-regen">${o("Regenerate", "다시 생성", "สร้างใหม่")}</button>`,
       );
     let e = Ka(P),
       a = Xi(e);
     return `<div class="panel panel--gold" style="margin:22px 0 14px"><div class="row row--between"><div><span class="kicker">${o("Your Golden Day", "나의 골든 데이", "วันสีทองของคุณ")}</span><h2 style="font-size:26px;margin-top:6px">${s(u.preset ? h(u.preset.name) : o("Custom plan", "맞춤 플랜", "แผนเฉพาะ"))} · ${s(u.date)}</h2></div><div style="text-align:right"><div class="stat">${He(Ue(u.start))}–${He(a.end)}</div><div class="muted" style="font-size:12.5px">${e.length}${o(" stops", "곳", " จุด")}</div></div></div>
-  <p style="margin-top:8px;font-size:14px">${o("Estimated spend", "예상 지출", "ค่าใช้จ่ายโดยประมาณ")}: <b class="gold">${a.lo}–${a.hi} THB</b> ${o("per person", "인당", "ต่อคน")} · ${u.group}${o(" people", "명", " คน")}: <b>${a.lo * u.group}–${a.hi * u.group} THB</b> <span class="muted">(${o("estimates; excludes transport", "추정치, 교통비 제외", "")})</span></p>
-  ${a.hi > u.budget ? `<div class="note note--warn" style="margin-top:8px">${o(`Upper estimate exceeds your ${u.budget} THB budget — swap a stop or reduce meals.`, `상한 추정치가 예산 ${u.budget}바트를 넘어요. 일정을 교체하거나 식사를 줄여보세요.`, "")}</div>` : ""}
+  <p style="margin-top:8px;font-size:14px">${o("Estimated spend", "예상 지출", "ค่าใช้จ่ายโดยประมาณ")}: <b class="gold">${a.lo}–${a.hi} THB</b> ${o("per person", "인당", "ต่อคน")} · ${u.group}${o(" people", "명", " คน")}: <b>${a.lo * u.group}–${a.hi * u.group} THB</b> <span class="muted">(${o("estimates; excludes transport", "추정치, 교통비 제외", "เป็นค่าประมาณ; ไม่รวมค่าเดินทาง")})</span></p>
+  ${a.hi > u.budget ? `<div class="note note--warn" style="margin-top:8px">${o(`Upper estimate exceeds your ${u.budget} THB budget — swap a stop or reduce meals.`, `상한 추정치가 예산 ${u.budget}바트를 넘어요. 일정을 교체하거나 식사를 줄여보세요.`, `ค่าใช้จ่ายโดยประมาณอาจสูงเกินงบ ${u.budget} THB — ลองเปลี่ยนจุดแวะหรือลดจำนวนมื้อ.`)}</div>` : ""}
   <div class="row" style="margin-top:12px"><button class="btn btn--gold btn--sm" id="pl-save">${m("bookmark", 15)} ${o("Save plan", "일정 저장", "บันทึก")}</button><button class="btn btn--ghost btn--sm" id="pl-copy">${m("copy", 15)} ${o("Copy itinerary", "일정 복사", "คัดลอก")}</button><button class="btn btn--ghost btn--sm" id="pl-share">${m("share", 15)} ${o("Share", "공유", "แชร์")}</button><a class="btn btn--ghost btn--sm" href="${os()}" target="_blank" rel="noopener">${m("nav", 15)} ${o("Open directions", "전체 길찾기", "นำทาง")}</a><button class="btn btn--ghost btn--sm" id="pl-regen">${m("refresh", 15)} ${o("Regenerate", "다시 생성", "สร้างใหม่")}</button></div></div>
   <div class="tl">${e.map((t, n) => ts(t, n, e.length)).join("")}</div>
-  <p class="muted" style="font-size:12.5px;margin-top:14px">${o("Costs are rough per-person estimates. We don’t compute travel times (no routing service) — open Google Maps for live transit. Check opening hours before you go.", "비용은 인당 대략적인 추정치예요. 이동 시간은 계산하지 않아요(경로 서비스 미사용). 구글 지도에서 실시간 대중교통과 영업시간을 확인하세요.", "")}</p>`;
+  <p class="muted" style="font-size:12.5px;margin-top:14px">${o("Costs are rough per-person estimates. We don’t compute travel times (no routing service) — open Google Maps for live transit. Check opening hours before you go.", "비용은 인당 대략적인 추정치예요. 이동 시간은 계산하지 않아요(경로 서비스 미사용). 구글 지도에서 실시간 대중교통과 영업시간을 확인하세요.", "ค่าใช้จ่ายเป็นราคาคร่าว ๆ ต่อคน. เราไม่ได้คำนวณเวลาเดินทาง (ไม่มีบริการคำนวณเส้นทาง) — เปิด Google Maps เพื่อดูข้อมูลขนส่งสาธารณะแบบเรียลไทม์. เช็กเวลาเปิดก่อนไป.")}</p>`;
   }
   function Na() {
     let e = u;
     return `<div class="panel"><div class="form">
   <label class="f">${o("Starting area", "출발 지역", "จุดเริ่มต้น")}<select id="i-hood">${be.map((a) => `<option value="${a.id}" ${e.startHood === a.id ? "selected" : ""}>${s(h(a.name))}</option>`).join("")}<option value="other" ${e.startHood === "other" ? "selected" : ""}>${o("Somewhere else (type below)", "다른 곳 (아래에 입력)", "อื่นๆ")}</option></select></label>
-  <label class="f">${o("Your own start point (optional, private)", "직접 입력한 출발지 (선택, 비공개)", "จุดเริ่มต้นของคุณ")}<input id="i-text" type="text" value="${s(e.startText)}" placeholder="${s(o("hotel area / station — stays on this device", "호텔 근처/역 — 이 기기에만 저장", ""))}"></label>
+  <label class="f">${o("Your own start point (optional, private)", "직접 입력한 출발지 (선택, 비공개)", "จุดเริ่มต้นของคุณ")}<input id="i-text" type="text" value="${s(e.startText)}" placeholder="${s(o("hotel area / station — stays on this device", "호텔 근처/역 — 이 기기에만 저장", "ย่านที่พัก / สถานี — เก็บไว้ในเครื่องนี้เท่านั้น"))}"></label>
   <label class="f">${o("Date", "날짜", "วันที่")}<input id="i-date" type="date" value="${e.date}"></label>
   <label class="f">${o("Start time", "시작 시간", "เริ่ม")}<input id="i-start" type="time" value="${e.start}"></label>
   <label class="f">${o("Group size", "인원", "จำนวนคน")}<input id="i-group" type="number" min="1" max="30" value="${e.group}"></label>
@@ -20881,10 +20881,10 @@ ${o("Estimates only — check Google Maps for hours and live travel times.", "�
   <h5 style="font:600 10.5px var(--f-head);letter-spacing:.22em;color:var(--muted);text-transform:uppercase;margin:16px 0 4px">${o("Preferred activities", "선호 활동", "กิจกรรมที่ชอบ")}</h5><div class="chips chips--wrap" id="c-acts">${Di.map(([a, t, n, , i]) => C(`${m(i, 14)} ${s(o(t, n, t))}`, `data-act="${a}"`, e.acts.includes(a))).join("")}</div>
   <h5 style="font:600 10.5px var(--f-head);letter-spacing:.22em;color:var(--muted);text-transform:uppercase;margin:6px 0 4px">${o("Food interests", "음식 취향", "ความสนใจอาหาร")}</h5><div class="chips chips--wrap" id="c-food">${Yi.map(([a, t]) => C(s(o(t, zi[a], t)), `data-food="${a}"`, e.foods.includes(a))).join("")}</div>
   <div class="row"><button class="btn btn--gold" id="pl-go">${m("star", 16)} ${o("Generate my Golden Day", "골든 데이 만들기", "สร้างแผนวันสีทอง")}</button><button class="btn btn--ghost btn--sm" id="pl-loc">${m("pin", 15)} ${o("Use my location (optional)", "내 위치 사용 (선택)", "ใช้ตำแหน่งของฉัน")}</button></div>
-  <p class="muted" style="font-size:12px;margin-top:8px">${o("Location is optional, used only in this tab to pick nearby stops, and never saved or sent anywhere. Declining changes nothing else.", "위치 사용은 선택이에요. 이 탭에서 가까운 장소를 고르는 데만 쓰이고, 저장하거나 전송하지 않아요. 거부해도 다른 기능은 그대로 쓸 수 있어요.", "")} ${e.here ? `<b class="gold">${o("Using your location.", "내 위치 사용 중.", "")}</b>` : ""}</p></div>`;
+  <p class="muted" style="font-size:12px;margin-top:8px">${o("Location is optional, used only in this tab to pick nearby stops, and never saved or sent anywhere. Declining changes nothing else.", "위치 사용은 선택이에요. 이 탭에서 가까운 장소를 고르는 데만 쓰이고, 저장하거나 전송하지 않아요. 거부해도 다른 기능은 그대로 쓸 수 있어요.", "จะให้ใช้ตำแหน่งหรือไม่ก็ได้ เราใช้เฉพาะในแท็บนี้เพื่อหาจุดแวะใกล้ ๆ โดยไม่บันทึกหรือส่งต่อ. หากปฏิเสธ ฟีเจอร์อื่นยังใช้ได้เหมือนเดิม.")} ${e.here ? `<b class="gold">${o("Using your location.", "내 위치 사용 중.", "กำลังใช้ตำแหน่งของคุณ.")}</b>` : ""}</p></div>`;
   }
   function ns() {
-    return `<div class="wrap">${A(o("Smart Day Planner", "스마트 데이 플래너", "แพลนเนอร์อัจฉริยะ"), o("Plan your Golden Day.", "골든 데이를 계획하세요.", "วางแผนวันสีทองของคุณ"), o("Pick a preset or set your own limits. We build a stop-by-stop day from verified entries in this guide — then you reorder, swap, save and share it.", "프리셋을 고르거나 직접 조건을 정하세요. 이 가이드의 확인된 항목으로 하루 코스를 만들고, 순서를 바꾸고, 교체하고, 저장·공유할 수 있어요.", ""))}${M()}
+    return `<div class="wrap">${A(o("Smart Day Planner", "스마트 데이 플래너", "แพลนเนอร์อัจฉริยะ"), o("Plan your Golden Day.", "골든 데이를 계획하세요.", "วางแผนวันสีทองของคุณ"), o("Pick a preset or set your own limits. We build a stop-by-stop day from verified entries in this guide — then you reorder, swap, save and share it.", "프리셋을 고르거나 직접 조건을 정하세요. 이 가이드의 확인된 항목으로 하루 코스를 만들고, 순서를 바꾸고, 교체하고, 저장·공유할 수 있어요.", "เลือกแผนสำเร็จรูปหรือตั้งเงื่อนไขเอง. เราจะจัดแผนเที่ยวให้ทีละจุดจากรายการที่ตรวจสอบแล้วในคู่มือนี้ — คุณสลับลำดับ เปลี่ยนจุดแวะ บันทึก และแชร์ได้."))}${M()}
   <h3 style="margin-bottom:10px">${o("Start with a preset", "프리셋으로 시작", "เริ่มจากพรีเซ็ต")}</h3><div class="grid grid--3" id="presets">${da.map((e) => `<button class="preset ${u.preset?.id === e.id ? "on" : ""}" data-preset="${e.id}"><span class="n">${String(e.n).padStart(2, "0")}</span><b>${s(h(e.name))}</b><small>${s(h(e.desc))}</small></button>`).join("")}</div>
   <hr class="rule"><h3 style="margin-bottom:10px">${o("Or fine-tune it", "직접 세부 조정", "หรือปรับเอง")}</h3><div id="pform">${Na()}</div><div id="presult">${Ha()}</div></div>`;
   }
@@ -21046,7 +21046,7 @@ ${o("Estimates only — check Google Maps for hours and live travel times.", "�
         if (t.closest("#pl-loc")) {
           if (!navigator.geolocation) {
             L(
-              o("Location isn’t available on this device.", "이 기기에서는 위치를 쓸 수 없어요.", ""),
+              o("Location isn’t available on this device.", "이 기기에서는 위치를 쓸 수 없어요.", "อุปกรณ์นี้ระบุตำแหน่งไม่ได้."),
               "info",
             );
             return;
@@ -21055,11 +21055,11 @@ ${o("Estimates only — check Google Maps for hours and live travel times.", "�
             (k) => {
               (u.here = [+k.coords.latitude.toFixed(4), +k.coords.longitude.toFixed(4)]),
                 (c("#pform", e).innerHTML = Na()),
-                L(o("Using your location for this session only", "이번 방문에만 위치를 사용해요", ""));
+                L(o("Using your location for this session only", "이번 방문에만 위치를 사용해요", "ใช้ตำแหน่งของคุณเฉพาะครั้งนี้"));
             },
             () =>
               L(
-                o("No problem — pick a neighborhood instead.", "괜찮아요. 대신 동네를 골라주세요.", ""),
+                o("No problem — pick a neighborhood instead.", "괜찮아요. 대신 동네를 골라주세요.", "ไม่เป็นไร — เลือกย่านแทนได้เลย."),
                 "info",
               ),
             { timeout: 8e3, maximumAge: 6e5 },
@@ -21158,14 +21158,14 @@ ${o("Estimates only — check Google Maps for hours and live travel times.", "�
         .map(([, p]) => ({ k: "act", type: p._t, id: p.id, dur: Yt(vo(p.duration) * 60) }));
     }
     se(
-      `<div class="sheet__body" style="padding-top:60px"><h2 style="font-size:26px">${o("Replace this stop", "이 장소 교체", "เปลี่ยนจุดนี้")}</h2><p class="sub">${o("Pick an alternative that fits your filters.", "조건에 맞는 대안을 골라보세요.", "")}</p><div class="grid grid--2">${
+      `<div class="sheet__body" style="padding-top:60px"><h2 style="font-size:26px">${o("Replace this stop", "이 장소 교체", "เปลี่ยนจุดนี้")}</h2><p class="sub">${o("Pick an alternative that fits your filters.", "조건에 맞는 대안을 골라보세요.", "เลือกตัวเลือกอื่นที่ตรงกับตัวกรองของคุณ.")}</p><div class="grid grid--2">${
         r
           .map((l, p) => {
             let d = ka(l);
             return `<button class="card" data-pick="${p}" style="text-align:left"><div class="card__b"><h3 style="font-size:16px">${s(d.title)}</h3><p>${s(d.desc)}</p><div class="meta"><span>~${d.cost[0]}–${d.cost[1]} THB</span><span>${l.dur} min</span></div></div></button>`;
           })
           .join("") ||
-        `<p class="muted">${o("No alternatives match your filters.", "조건에 맞는 대안이 없어요.", "")}</p>`
+        `<p class="muted">${o("No alternatives match your filters.", "조건에 맞는 대안이 없어요.", "ไม่มีตัวเลือกอื่นที่ตรงกับตัวกรองของคุณ.")}</p>`
       }</div></div>`,
     ),
       c("#sheet").addEventListener("click", function l(p) {
@@ -21351,7 +21351,7 @@ ${o("Estimates only — check Google Maps for hours and live travel times.", "�
   <div class="grid grid--3">${ta.map((a) => `<a class="num" href="tel:${a.num}" aria-label="${o("Call", "전화", "โทร")} ${a.num} ${s(h(a.label))}"><b>${a.num}</b><span>${s(h(a.label))}<br><small class="muted">${a.num === "1672" ? o("Information line · not emergency dispatch", "안내 전화 · 긴급 출동 아님", "สายข้อมูล") : o("Tap to call", "눌러서 전화", "แตะเพื่อโทร")}</small></span>${m("phone", 22)}</a>`).join("")}</div>
   ${e ? `<p class="muted" style="font-size:13px;margin-top:12px;max-width:820px">${s(h(e))}</p>` : ""}
   <div class="note" style="margin-top:12px">${m("info", 16)} ${o("Offline: after your first visit this page, the phone numbers and Thai message cards are cached by your browser and should still open without internet. Maps, weather, exchange rates and links to official sites need a connection.", "오프라인: 한 번 방문하면 이 페이지의 전화번호와 태국어 메시지 카드가 브라우저에 저장되어 인터넷 없이도 열려요. 지도, 날씨, 환율, 공식 사이트 링크는 인터넷이 필요해요.", "ออฟไลน์: หน้านี้เปิดได้หลังเข้าครั้งแรก")}</div>
-  <hr class="rule"><span class="kicker">${o("Show this to someone", "이 카드를 보여주세요", "ให้คนไทยดู")}</span><h2 class="h2" style="margin-top:8px">${o("Thai message cards", "태국어 메시지 카드", "การ์ดข้อความภาษาไทย")}</h2><p class="sub">${o("Big, readable, one tap to go full-screen.", "크고 읽기 쉬워요. 한 번 누르면 전체 화면.", "")}</p>
+  <hr class="rule"><span class="kicker">${o("Show this to someone", "이 카드를 보여주세요", "ให้คนไทยดู")}</span><h2 class="h2" style="margin-top:8px">${o("Thai message cards", "태국어 메시지 카드", "การ์ดข้อความภาษาไทย")}</h2><p class="sub">${o("Big, readable, one tap to go full-screen.", "크고 읽기 쉬워요. 한 번 누르면 전체 화면.", "ตัวใหญ่ อ่านง่าย แตะครั้งเดียวก็ดูได้เต็มจอ.")}</p>
   <div class="grid grid--2">${Za.map(
     (
       a,
@@ -21360,12 +21360,12 @@ ${o("Estimates only — check Google Maps for hours and live travel times.", "�
     <div class="row" style="justify-content:center"><button class="btn btn--danger btn--sm" data-local='${s(JSON.stringify({ th: a.th, rom: a.rom, en: a.en, ko: a.ko }))}'>${m("max", 16)} ${o("Show full-screen", "전체 화면으로", "เต็มจอ")}</button><button class="btn btn--ghost btn--sm" data-copy="${s(a.th)}" aria-label="${o("Copy Thai text", "태국어 복사", "คัดลอก")}">${m("copy", 16)}</button>${Se(a.th)}</div></article>`,
   ).join("")}</div>
   <hr class="rule"><span class="kicker">${o("Practical survival", "실전 생존 팁", "เอาตัวรอด")}</span><h2 class="h2" style="margin-top:8px">${We.length}${o(" topics, with sources", "개 주제 (출처 포함)", " หัวข้อ")}</h2>
-  <p class="sub">${o("“Verified fact” entries were checked against the linked page on the date shown. Rules change — re-check anything that matters.", "“확인된 사실”은 표시된 날짜에 링크된 페이지로 확인한 내용이에요. 규정은 바뀔 수 있으니 중요한 건 다시 확인하세요.", "")}</p>
+  <p class="sub">${o("“Verified fact” entries were checked against the linked page on the date shown. Rules change — re-check anything that matters.", "“확인된 사실”은 표시된 날짜에 링크된 페이지로 확인한 내용이에요. 규정은 바뀔 수 있으니 중요한 건 다시 확인하세요.", "รายการ “ข้อเท็จจริง” ตรวจสอบกับแหล่งข้อมูลในลิงก์แล้ว ณ วันที่ระบุ. กฎอาจเปลี่ยนได้ — ควรเช็กเรื่องสำคัญอีกครั้ง.")}</p>
   <div id="surv">${We.map(
     (
       a,
     ) => `<details class="acc" id="sv-${a.id}"><summary>${m(["siren"].includes(a.icon) ? "warn" : ["smartphone", "wifi", "plug", "drop"].includes(a.icon) ? a.icon : "info", 20)}<span>${s(h(a.topic))}</span><span class="tag ${a.type === "fact" ? "tag--ok" : ""}" style="margin-left:auto">${s(o(...(on[a.type] || on.advice)))}</span><span class="chev">${m("down", 18)}</span></summary><div class="acc__b"><p>${s(h(a.body))}</p>${a.tips?.length ? `<ul style="margin:10px 0 0;padding-left:18px">${a.tips.map((t) => `<li>${s(h(t))}</li>`).join("")}</ul>` : ""}
-    ${a.source ? `<p style="margin-top:10px;font-size:12.5px"><a class="gold" href="${s(a.source.url)}" target="_blank" rel="noopener">${m("ext", 13)} ${s(a.source.name)}</a>${a.checked ? ` <span class="muted">· ${o("checked", "확인일", "ตรวจสอบเมื่อ")} ${s(a.checked)}</span>` : ` <span class="muted">· ${o("not date-verified", "날짜 확인 안 됨", "")}</span>`}</p>` : ""}</div></details>`,
+    ${a.source ? `<p style="margin-top:10px;font-size:12.5px"><a class="gold" href="${s(a.source.url)}" target="_blank" rel="noopener">${m("ext", 13)} ${s(a.source.name)}</a>${a.checked ? ` <span class="muted">· ${o("checked", "확인일", "ตรวจสอบเมื่อ")} ${s(a.checked)}</span>` : ` <span class="muted">· ${o("not date-verified", "날짜 확인 안 됨", "ยังไม่ได้ยืนยันวันที่")}</span>`}</p>` : ""}</div></details>`,
   ).join("")}</div></div>`;
   }
   function tn(e) {
@@ -21434,7 +21434,7 @@ ${o("Estimates only — check Google Maps for hours and live travel times.", "�
         ),
         l.length &&
           n.push(
-            `<h3 style="margin:24px 0 12px">${o("Saved Thai phrases", "저장한 태국어 표현", "วลีที่บันทึก")} · ${l.length}</h3><p class="sub">${o("Saved on this device — they open offline once the site has loaded.", "이 기기에 저장돼요. 사이트를 한 번 불러오면 오프라인에서도 열려요.", "")}</p><div class="grid grid--3">${l.map(r).join("")}</div>`,
+            `<h3 style="margin:24px 0 12px">${o("Saved Thai phrases", "저장한 태국어 표현", "วลีที่บันทึก")} · ${l.length}</h3><p class="sub">${o("Saved on this device — they open offline once the site has loaded.", "이 기기에 저장돼요. 사이트를 한 번 불러오면 오프라인에서도 열려요.", "บันทึกไว้ในเครื่องนี้ — หลังจากโหลดเว็บแล้วก็เปิดดูแบบออฟไลน์ได้.")}</p><div class="grid grid--3">${l.map(r).join("")}</div>`,
           );
     }
     return n.length
@@ -21448,14 +21448,14 @@ ${o("Estimates only — check Google Maps for hours and live travel times.", "�
           o(
             "Tap the ♥ on any dish, place, phrase or itinerary and it will live here — saved on this device only.",
             "음식, 장소, 표현, 일정의 ♥를 누르면 여기에 모여요. 이 기기에만 저장돼요.",
-            "",
+            "แตะ ♥ ที่เมนูอาหาร สถานที่ วลี หรือแผนเที่ยว แล้วจะมาอยู่ที่นี่ — บันทึกไว้เฉพาะในเครื่องนี้.",
           ),
           `<a class="btn btn--gold" href="#/food">${o("Find food", "음식 찾기", "หาอาหาร")}</a> <a class="btn btn--ghost" href="#/experiences">${o("Browse experiences", "경험 둘러보기", "ดูกิจกรรม")}</a>`,
         );
   }
   function ms() {
-    return `<div class="wrap">${A(o("Saved", "저장 목록", "ที่บันทึกไว้"), o("Your Bangkok shortlist.", "나만의 방콕 리스트.", "ลิสต์ของคุณ"), o("Everything you ♥ lives here, with filters. No account — it stays on this device.", "♥ 누른 모든 것이 여기에 모여요. 계정 없이 이 기기에 저장돼요.", ""))}${M()}
-  ${w.persistent ? "" : `<div class="note note--warn">${o("Your browser is blocking local storage, so saves won’t persist after you close this tab.", "브라우저가 로컬 저장을 막고 있어서 탭을 닫으면 저장이 사라져요.", "")}</div>`}
+    return `<div class="wrap">${A(o("Saved", "저장 목록", "ที่บันทึกไว้"), o("Your Bangkok shortlist.", "나만의 방콕 리스트.", "ลิสต์ของคุณ"), o("Everything you ♥ lives here, with filters. No account — it stays on this device.", "♥ 누른 모든 것이 여기에 모여요. 계정 없이 이 기기에 저장돼요.", "ทุกอย่างที่คุณกด ♥ อยู่ที่นี่ เลือกตัวกรองเพื่อค้นหาได้. ไม่ต้องมีบัญชี — ข้อมูลอยู่ในเครื่องนี้เท่านั้น."))}${M()}
+  ${w.persistent ? "" : `<div class="note note--warn">${o("Your browser is blocking local storage, so saves won’t persist after you close this tab.", "브라우저가 로컬 저장을 막고 있어서 탭을 닫으면 저장이 사라져요.", "เบราว์เซอร์ปิดกั้นการเก็บข้อมูลในเครื่อง รายการที่บันทึกไว้จะหายไปเมื่อปิดแท็บนี้.")}</div>`}
   <div class="chips">${cs.map(([e, a, t, n]) => C(s(o(a, t, n)), `data-sf="${e}"`, Ke.f === e)).join("")}</div><div id="sbody2">${rn()}</div></div>`;
   }
   function gs(e) {
@@ -21552,17 +21552,17 @@ ${o("Estimates only — check Google Maps for hours and live travel times.", "�
               `<button class="panel" style="text-align:left;padding:12px 14px" data-pan="${t.type}/${t.it.id}"><b>${s(t.title)}</b><div class="muted" style="font-size:12px">${s(o(...{ hood: ["Neighborhood", "동네"], exp: ["Activity", "액티비티"], gem: ["Hidden gem", "히든 스팟"], shop: ["Shopping", "쇼핑"] }[t.type]))}${t.it.area ? " · " + s(J(t.it.area)) : ""}</div></button>`,
           )
           .join("")
-      : `<div class="note">${o("Nothing matches. Clear the search or turn on more categories.", "조건에 맞는 장소가 없어요. 검색어를 지우거나 카테고리를 더 켜보세요.", "")}</div>`),
-      (c("#mcount", e).textContent = `${a.length}${o(" places on the map", "곳이 지도에 표시돼요", "")}`);
+      : `<div class="note">${o("Nothing matches. Clear the search or turn on more categories.", "조건에 맞는 장소가 없어요. 검색어를 지우거나 카테고리를 더 켜보세요.", "ไม่พบรายการที่ตรงกัน. ลองล้างคำค้นหรือเลือกหมวดหมู่เพิ่ม.")}</div>`),
+      (c("#mcount", e).textContent = `${a.length}${o(" places on the map", "곳이 지도에 표시돼요", " สถานที่บนแผนที่")}`);
   }
   function ys() {
     let e = [...K, ...W, ...Re, ...be].length,
       a = dn().length;
-    return `<div class="wrap">${A(o("Map", "지도", "แผนที่"), o("Explore by location.", "위치로 탐색하기.", "สำรวจตามตำแหน่ง"), o("Pins are placed from OpenStreetMap geocoding of well-known places. Places without a reliable location have no pin — use their Google Maps link instead.", "핀은 잘 알려진 장소를 OpenStreetMap으로 지오코딩해 찍었어요. 위치가 확실하지 않은 곳은 핀이 없으니 구글 지도 링크를 이용하세요.", ""))}${M()}
+    return `<div class="wrap">${A(o("Map", "지도", "แผนที่"), o("Explore by location.", "위치로 탐색하기.", "สำรวจตามตำแหน่ง"), o("Pins are placed from OpenStreetMap geocoding of well-known places. Places without a reliable location have no pin — use their Google Maps link instead.", "핀은 잘 알려진 장소를 OpenStreetMap으로 지오코딩해 찍었어요. 위치가 확실하지 않은 곳은 핀이 없으니 구글 지도 링크를 이용하세요.", "เราใช้พิกัดจาก OpenStreetMap เพื่อปักหมุดสถานที่ที่รู้จักกันดี. ถ้าพิกัดยังไม่น่าเชื่อถือ เราจะไม่ปักหมุด — เปิดลิงก์ Google Maps ของสถานที่นั้นแทนได้."))}${M()}
   <div class="row" style="margin-bottom:8px"><label class="search" style="flex:1;min-width:200px">${m("search", 18)}<input id="mq" type="text" placeholder="${s(o("Search pins…", "핀 검색…", "ค้นหา"))}"></label><button class="btn btn--ghost btn--sm" id="m-loc">${m("nav", 15)} ${o("Show my location", "내 위치 보기", "ตำแหน่งของฉัน")}</button></div>
   <div class="chips" id="mk">${us.map(([t, n, i]) => C(s(o(n, i, n)), `data-mk="${t}"`, le.on.has(t))).join("")}${C(`${m("heart", 14)} ${o("Saved only", "저장한 곳만", "ที่บันทึก")}`, "data-msaved", le.saved)}</div>
   <p class="muted" style="font-size:12.5px;margin-bottom:8px" id="mcount"></p><div class="mapbox" id="map" aria-label="${o("Interactive map of Bangkok", "방콕 지도", "แผนที่")}"><div class="empty" style="height:100%;display:grid;place-items:center;border:0">${o("Loading map…", "지도를 불러오는 중…", "กำลังโหลด…")}</div></div>
-  <p class="muted" style="font-size:12px;margin:8px 0">${a} ${o("of", "/", "จาก")} ${e}${o(" entries have verified pins. Location is only requested when you tap “Show my location” — the map works fine without it.", "개 항목에 확인된 핀이 있어요. 위치는 “내 위치 보기”를 눌렀을 때만 요청하며, 없어도 지도는 잘 작동해요.", "")} © <a class="gold" href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a></p>
+  <p class="muted" style="font-size:12px;margin:8px 0">${a} ${o("of", "/", "จาก")} ${e}${o(" entries have verified pins. Location is only requested when you tap “Show my location” — the map works fine without it.", "개 항목에 확인된 핀이 있어요. 위치는 “내 위치 보기”를 눌렀을 때만 요청하며, 없어도 지도는 잘 작동해요.", " รายการมีหมุดที่ตรวจสอบแล้ว. เราจะขอใช้ตำแหน่งเมื่อคุณแตะ “ตำแหน่งของฉัน” เท่านั้น — ถ้าไม่ให้ใช้ตำแหน่งก็ยังดูแผนที่ได้.")} © <a class="gold" href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a></p>
   <h3 style="margin:18px 0 10px">${o("Places", "장소 목록", "สถานที่")}</h3><div class="grid grid--3" id="mlist"></div></div>`;
   }
   async function ws(e, { q: a }) {
@@ -21571,7 +21571,7 @@ ${o("Estimates only — check Google Maps for hours and live travel times.", "�
       await ks();
     } catch {
       (c("#map", e).innerHTML =
-        `<div class="empty" style="height:100%;display:grid;place-items:center;border:0"><div>${o("The map needs an internet connection. The place list below still works, and each place has a Google Maps link.", "지도는 인터넷 연결이 필요해요. 아래 장소 목록은 그대로 쓸 수 있고, 각 장소에는 구글 지도 링크가 있어요.", "")}</div></div>`),
+        `<div class="empty" style="height:100%;display:grid;place-items:center;border:0"><div>${o("The map needs an internet connection. The place list below still works, and each place has a Google Maps link.", "지도는 인터넷 연결이 필요해요. 아래 장소 목록은 그대로 쓸 수 있고, 각 장소에는 구글 지도 링크가 있어요.", "ต้องต่ออินเทอร์เน็ตเพื่อดูแผนที่. รายชื่อสถานที่ด้านล่างยังเปิดดูได้ และแต่ละแห่งมีลิงก์ Google Maps.")}</div></div>`),
         (c("#mlist", e).innerHTML = cn()
           .map((r) => `<a class="panel" href="${xa(r.type, r.it.id)}"><b>${s(r.title)}</b></a>`)
           .join(""));
@@ -21594,7 +21594,7 @@ ${o("Estimates only — check Google Maps for hours and live travel times.", "�
         .addTo(Me),
       c("#map", e).insertAdjacentHTML(
         "beforeend",
-        `<div class="note" id="mapnote" style="position:absolute;left:10px;bottom:10px;right:60px;z-index:500;font-size:12px">${o("Basemap tiles are not available in this hosted version, so pins float on a blank canvas. Use “Directions” on any pin to open Google Maps.", "이 호스팅 버전에서는 배경 지도가 표시되지 않아 핀만 보여요. 핀의 “길찾기”를 누르면 구글 지도가 열려요.", "")}</div>`,
+        `<div class="note" id="mapnote" style="position:absolute;left:10px;bottom:10px;right:60px;z-index:500;font-size:12px">${o("Basemap tiles are not available in this hosted version, so pins float on a blank canvas. Use “Directions” on any pin to open Google Maps.", "이 호스팅 버전에서는 배경 지도가 표시되지 않아 핀만 보여요. 핀의 “길찾기”를 누르면 구글 지도가 열려요.", "เวอร์ชันนี้โหลดภาพแผนที่พื้นหลังไม่ได้ จึงเห็นเฉพาะหมุดบนพื้นว่าง. แตะ “นำทาง” ที่หมุดใดก็ได้เพื่อเปิด Google Maps.")}</div>`,
       ),
       (So = n.layerGroup().addTo(Me)),
       (fa = null),
@@ -21629,7 +21629,7 @@ ${o("Estimates only — check Google Maps for hours and live travel times.", "�
         }
         if (r.target.closest("#m-loc")) {
           if (!navigator.geolocation) {
-            L(o("Location isn’t available here.", "이 기기에서는 위치를 쓸 수 없어요.", ""), "info");
+            L(o("Location isn’t available here.", "이 기기에서는 위치를 쓸 수 없어요.", "ระบุตำแหน่งที่นี่ไม่ได้."), "info");
             return;
           }
           navigator.geolocation.getCurrentPosition(
@@ -21640,7 +21640,7 @@ ${o("Estimates only — check Google Maps for hours and live travel times.", "�
                   .circleMarker(g, { radius: 8, color: "#D6B65B", fillColor: "#D6B65B", fillOpacity: 0.8 })
                   .addTo(Me)
                   .bindPopup(
-                    o("You are here (not saved or shared)", "현재 위치 (저장·공유되지 않아요)", ""),
+                    o("You are here (not saved or shared)", "현재 위치 (저장·공유되지 않아요)", "คุณอยู่ที่นี่ (ไม่บันทึกหรือแชร์ตำแหน่ง)"),
                   )),
                 Me.setView(g, 14),
                 fa.openPopup();
@@ -21650,7 +21650,7 @@ ${o("Estimates only — check Google Maps for hours and live travel times.", "�
                 o(
                   "No problem — the map works without your location.",
                   "괜찮아요. 위치 없이도 지도를 쓸 수 있어요.",
-                  "",
+                  "ไม่เป็นไร — ใช้แผนที่ได้แม้ไม่แชร์ตำแหน่ง.",
                 ),
                 "info",
               ),
@@ -21712,13 +21712,13 @@ ${o("Estimates only — check Google Maps for hours and live travel times.", "�
   var yn = {};
   q(yn, { mount: () => Ts, render: () => vs });
   function vs() {
-    return `<div class="wrap">${A(o("The Team Companion", "팀 컴패니언", "คู่มือสำหรับทีม"), o("Built for teams on the road.", "원정 중인 팀을 위한 가이드.", "สำหรับทีมที่เดินทาง"), o("Fast answers for players, coaches and staff: what to eat after training, what to do on a rest day, and how to talk to the hotel desk.", "선수·코치·스태프를 위한 빠른 답: 훈련 후 뭘 먹을지, 휴식일엔 뭘 할지, 호텔 데스크에는 뭐라고 말할지.", ""))}${M()}
-  <div class="note" style="margin-bottom:18px">${m("shield", 16)} <b>${o("Privacy by design.", "개인정보 보호 설계.", "ความเป็นส่วนตัว")}</b> ${o("This guide never contains accommodation, schedules, logistics, live locations or private contacts.", "이 가이드에는 숙소, 일정, 이동 계획, 실시간 위치, 개인 연락처가 전혀 들어 있지 않아요.", "")}</div>
+    return `<div class="wrap">${A(o("The Team Companion", "팀 컴패니언", "คู่มือสำหรับทีม"), o("Built for teams on the road.", "원정 중인 팀을 위한 가이드.", "สำหรับทีมที่เดินทาง"), o("Fast answers for players, coaches and staff: what to eat after training, what to do on a rest day, and how to talk to the hotel desk.", "선수·코치·스태프를 위한 빠른 답: 훈련 후 뭘 먹을지, 휴식일엔 뭘 할지, 호텔 데스크에는 뭐라고 말할지.", "คำตอบสั้น ๆ สำหรับผู้เล่น โค้ช และทีมงาน: ซ้อมเสร็จกินอะไรดี, วันพักไปทำอะไร, และจะคุยกับพนักงานต้อนรับของโรงแรมยังไง."))}${M()}
+  <div class="note" style="margin-bottom:18px">${m("shield", 16)} <b>${o("Privacy by design.", "개인정보 보호 설계.", "ความเป็นส่วนตัว")}</b> ${o("This guide never contains accommodation, schedules, logistics, live locations or private contacts.", "이 가이드에는 숙소, 일정, 이동 계획, 실시간 위치, 개인 연락처가 전혀 들어 있지 않아요.", "คู่มือนี้ไม่เปิดเผยที่พัก ตารางเวลา แผนการเดินทาง ตำแหน่งแบบเรียลไทม์ หรือข้อมูลติดต่อส่วนตัวของทีม.")}</div>
   <span class="kicker">${o("Quick food finder", "빠른 음식 찾기", "หาอาหารเร็ว")}</span><div class="chips" style="margin-top:10px" id="tf">${gn.map(([e, a, t]) => C(s(o(a, t, a)), `data-tf="${e}"`, Je.f === e)).join("")}</div><div id="tflist">${kn()}</div>
   <hr class="rule"><span class="kicker">${o("Rest-day discovery", "휴식일 탐색", "วันพัก")}</span><div class="chips" style="margin-top:10px">${un.map(([e, a, t]) => C(s(o(a, t, a)), `data-tr="${e}"`, Je.r === e)).join("")}</div><div id="trlist">${fn()}</div>
-  <hr class="rule"><span class="kicker">${o("Quick essentials", "필수 바로가기", "ของจำเป็น")}</span><p class="sub" style="margin-top:8px">${o("Opens Google Maps near you — your browser asks before sharing location, and everything still works if you decline.", "구글 지도에서 가까운 곳을 열어줘요. 위치 공유는 브라우저가 먼저 묻고, 거부해도 그대로 쓸 수 있어요.", "")}</p>
+  <hr class="rule"><span class="kicker">${o("Quick essentials", "필수 바로가기", "ของจำเป็น")}</span><p class="sub" style="margin-top:8px">${o("Opens Google Maps near you — your browser asks before sharing location, and everything still works if you decline.", "구글 지도에서 가까운 곳을 열어줘요. 위치 공유는 브라우저가 먼저 묻고, 거부해도 그대로 쓸 수 있어요.", "เปิด Google Maps เพื่อดูสถานที่ใกล้คุณ — เบราว์เซอร์จะขออนุญาตก่อนแชร์ตำแหน่ง และถ้าปฏิเสธก็ยังใช้งานทุกอย่างได้.")}</p>
   <div class="grid grid--3">${bs.map(([e, a, t, n]) => `<a class="panel" style="display:flex;gap:12px;align-items:center" href="${Pe(a)}" target="_blank" rel="noopener">${m(n, 22, "gold")}<b>${s(o(e, t, e))}</b><span style="margin-left:auto">${m("ext", 16)}</span></a>`).join("")}<a class="panel" style="display:flex;gap:12px;align-items:center" href="#/transport">${m("train", 22, "gold")}<b>${o("Transport apps & tips", "교통 앱·팁", "แอปเดินทาง")}</b><span style="margin-left:auto">${m("right", 16)}</span></a><a class="panel" style="display:flex;gap:12px;align-items:center" href="#/shopping">${m("bag", 22, "gold")}<b>${o("Shopping & essentials guide", "쇼핑·필수품 가이드", "ช้อปปิ้ง")}</b><span style="margin-left:auto">${m("right", 16)}</span></a><a class="panel" style="display:flex;gap:12px;align-items:center;border-color:#7a3a3d" href="#/emergency">${m("warn", 22)}<b>${o("Emergency information", "긴급 정보", "ฉุกเฉิน")}</b><span style="margin-left:auto">${m("right", 16)}</span></a></div>
-  <hr class="rule"><span class="kicker">${o("Staff communication tools", "스태프 커뮤니케이션 도구", "สื่อสารสำหรับทีมงาน")}</span><p class="sub" style="margin-top:8px">${o("Deliveries, hotel help, equipment purchases, group cars and food orders. Tap “Show to a local”.", "택배, 호텔 요청, 장비 구매, 단체 차량, 음식 주문. “현지인에게 보여주기”를 누르세요.", "")}</p><div class="grid grid--3">${U.filter(
+  <hr class="rule"><span class="kicker">${o("Staff communication tools", "스태프 커뮤니케이션 도구", "สื่อสารสำหรับทีมงาน")}</span><p class="sub" style="margin-top:8px">${o("Deliveries, hotel help, equipment purchases, group cars and food orders. Tap “Show to a local”.", "택배, 호텔 요청, 장비 구매, 단체 차량, 음식 주문. “현지인에게 보여주기”를 누르세요.", "รับของ ขอความช่วยเหลือจากโรงแรม ซื้ออุปกรณ์ เรียกรถให้กลุ่ม และสั่งอาหาร. แตะ “ให้คนไทยดู”.")}</p><div class="grid grid--3">${U.filter(
     (e) => e.cat === "team",
   )
     .map(Ae)
@@ -21858,7 +21858,7 @@ ${o("Estimates only — check Google Maps for hours and live travel times.", "�
             a = [...K, ...W].filter(e[3]).slice(0, 9);
           return a.length
             ? `<div class="grid grid--cards">${a.map((t) => de(t, t.id.startsWith("gem-") ? "gem" : "exp")).join("")}</div>`
-            : `<div class="note">${o("No verified entries in this category yet — try the Experiences page filters.", "이 카테고리에는 아직 확인된 항목이 없어요. 경험 탭의 필터를 써보세요.", "")}</div>`;
+            : `<div class="note">${o("No verified entries in this category yet — try the Experiences page filters.", "이 카테고리에는 아직 확인된 항목이 없어요. 경험 탭의 필터를 써보세요.", "หมวดนี้ยังไม่มีรายการที่ตรวจสอบแล้ว — ลองใช้ตัวกรองในหน้าประสบการณ์.")}</div>`;
         });
     });
   var bn = {};
@@ -21866,13 +21866,13 @@ ${o("Estimates only — check Google Maps for hours and live travel times.", "�
   function Bs() {
     let e = Object.entries(D).sort((a, t) => a[0].localeCompare(t[0]));
     return `<div class="wrap">${A(o("About & credits", "소개 & 크레딧", "เกี่ยวกับและเครดิต"), o("An independent welcome gift.", "비공식 환영 선물.", "ของขวัญต้อนรับแบบไม่เป็นทางการ"), "")}
-  <div class="grid grid--2"><div class="panel panel--gold"><h3>${o("What this is", "이 가이드는", "นี่คืออะไร")}</h3><p style="margin-top:8px">${o("Gen.G Bangkok Survival Guide is an independent, fan-made companion for Korean-speaking esports players, coaches and staff visiting Bangkok. It is not an official Gen.G product, is not endorsed by Gen.G, and uses no official logo or brand artwork — only a black-and-gold, typography-led look inspired by the brand’s colors.", "Gen.G Bangkok Survival Guide는 방콕을 방문하는 한국어 사용 e스포츠 선수·코치·스태프를 위해 만든 비공식 팬 프로젝트예요. Gen.G의 공식 제품이 아니며 승인받지 않았고, 공식 로고나 브랜드 이미지를 쓰지 않았어요. 브랜드 컬러에서 영감을 받은 블랙·골드 타이포그래피 디자인만 사용했어요.", "")}</p></div>
-  <div class="panel"><h3>${o("Privacy", "개인정보", "ความเป็นส่วนตัว")}</h3><p style="margin-top:8px">${o("No accounts, no analytics, no tracking. Favorites, progress, language and itineraries are stored only in your browser. Location is requested only when you tap a location button and is never stored or sent by this site.", "계정, 분석, 추적이 없어요. 즐겨찾기·진행 상황·언어·일정은 브라우저에만 저장돼요. 위치는 위치 버튼을 눌렀을 때만 요청하며 이 사이트가 저장하거나 전송하지 않아요.", "")}</p></div>
-  <div class="panel"><h3>${o("Accuracy & sources", "정확도 & 출처", "ความถูกต้อง")}</h3><p style="margin-top:8px">${o("Prices are estimates. Safety, transport and legal items show their source and the date we checked them; anything unverified says so. Opening hours, fares and events change — confirm on Google Maps or the official site. Live data: Open-Meteo (weather), Frankfurter/ECB (THB→KRW).", "가격은 추정치예요. 안전·교통·법규 항목은 출처와 확인한 날짜를 표시하고, 확인하지 못한 건 그렇다고 적었어요. 영업시간·요금·행사는 바뀌니 구글 지도나 공식 사이트에서 확인하세요. 실시간 데이터: Open-Meteo(날씨), Frankfurter/ECB(THB→KRW).", "")}</p></div>
-  <div class="panel"><h3>${o("Offline use", "오프라인 사용", "ใช้ออฟไลน์")}</h3><p style="margin-top:8px">${o("After your first visit the site’s pages, saved phrases, emergency numbers, transport explanations and saved itineraries are cached and open without internet. Maps, weather, exchange rates, live links and any photo you haven’t viewed yet need a connection — this is not full offline support.", "첫 방문 후에는 사이트 페이지, 저장한 표현, 긴급 번호, 교통 설명, 저장한 일정이 캐시되어 인터넷 없이 열려요. 지도, 날씨, 환율, 외부 링크와 아직 안 본 사진은 인터넷이 필요해요. 완전한 오프라인 지원은 아니에요.", "")}</p></div></div>
-  <hr class="rule"><h2 class="h2">${o("Photo credits", "사진 크레딧", "เครดิตภาพ")} · ${e.length}</h2><p class="sub">${o("All photographs are from Wikimedia Commons and Flickr under the licenses shown. Tap a title for the original page, author and license text.", "모든 사진은 표시된 라이선스로 위키미디어 커먼즈와 Flickr에서 가져왔어요. 제목을 누르면 원본 페이지, 저작자, 라이선스를 볼 수 있어요.", "")}</p>
+  <div class="grid grid--2"><div class="panel panel--gold"><h3>${o("What this is", "이 가이드는", "นี่คืออะไร")}</h3><p style="margin-top:8px">${o("Gen.G Bangkok Survival Guide is an independent, fan-made companion for Korean-speaking esports players, coaches and staff visiting Bangkok. It is not an official Gen.G product, is not endorsed by Gen.G, and uses no official logo or brand artwork — only a black-and-gold, typography-led look inspired by the brand’s colors.", "Gen.G Bangkok Survival Guide는 방콕을 방문하는 한국어 사용 e스포츠 선수·코치·스태프를 위해 만든 비공식 팬 프로젝트예요. Gen.G의 공식 제품이 아니며 승인받지 않았고, 공식 로고나 브랜드 이미지를 쓰지 않았어요. 브랜드 컬러에서 영감을 받은 블랙·골드 타이포그래피 디자인만 사용했어요.", "Gen.G Bangkok Survival Guide เป็นคู่มืออิสระที่แฟน ๆ ทำขึ้นสำหรับผู้เล่นอีสปอร์ต โค้ช และทีมงานที่ใช้ภาษาเกาหลีและมาเยือนกรุงเทพ. คู่มือนี้ไม่ใช่ผลิตภัณฑ์ทางการของ Gen.G ไม่ได้รับการรับรองจาก Gen.G และไม่ได้ใช้โลโก้หรืองานกราฟิกทางการของแบรนด์ — ใช้การออกแบบที่เน้นตัวอักษรในโทนดำ–ทองตามสีของแบรนด์.")}</p></div>
+  <div class="panel"><h3>${o("Privacy", "개인정보", "ความเป็นส่วนตัว")}</h3><p style="margin-top:8px">${o("No accounts, no analytics, no tracking. Favorites, progress, language and itineraries are stored only in your browser. Location is requested only when you tap a location button and is never stored or sent by this site.", "계정, 분석, 추적이 없어요. 즐겨찾기·진행 상황·언어·일정은 브라우저에만 저장돼요. 위치는 위치 버튼을 눌렀을 때만 요청하며 이 사이트가 저장하거나 전송하지 않아요.", "ไม่ต้องมีบัญชี ไม่เก็บสถิติการใช้งาน และไม่ติดตามผู้ใช้. รายการโปรด ความคืบหน้า ภาษา และแผนเที่ยวจะเก็บไว้ในเบราว์เซอร์ของคุณเท่านั้น. เว็บไซต์จะขอใช้ตำแหน่งเมื่อคุณแตะปุ่มตำแหน่งเท่านั้น และจะไม่บันทึกหรือส่งต่อข้อมูลนี้.")}</p></div>
+  <div class="panel"><h3>${o("Accuracy & sources", "정확도 & 출처", "ความถูกต้อง")}</h3><p style="margin-top:8px">${o("Prices are estimates. Safety, transport and legal items show their source and the date we checked them; anything unverified says so. Opening hours, fares and events change — confirm on Google Maps or the official site. Live data: Open-Meteo (weather), Frankfurter/ECB (THB→KRW).", "가격은 추정치예요. 안전·교통·법규 항목은 출처와 확인한 날짜를 표시하고, 확인하지 못한 건 그렇다고 적었어요. 영업시간·요금·행사는 바뀌니 구글 지도나 공식 사이트에서 확인하세요. 실시간 데이터: Open-Meteo(날씨), Frankfurter/ECB(THB→KRW).", "ราคาเป็นค่าประมาณ. ข้อมูลด้านความปลอดภัย การเดินทาง และกฎหมายระบุแหล่งที่มาและวันที่ตรวจสอบ; หากยังไม่ได้ตรวจสอบจะระบุไว้. เวลาเปิด ค่าโดยสาร และกำหนดการกิจกรรมอาจเปลี่ยนได้ — เช็กอีกครั้งใน Google Maps หรือเว็บไซต์ทางการ. ข้อมูลสด: Open-Meteo (สภาพอากาศ), Frankfurter/ECB (THB→KRW).")}</p></div>
+  <div class="panel"><h3>${o("Offline use", "오프라인 사용", "ใช้ออฟไลน์")}</h3><p style="margin-top:8px">${o("After your first visit the site’s pages, saved phrases, emergency numbers, transport explanations and saved itineraries are cached and open without internet. Maps, weather, exchange rates, live links and any photo you haven’t viewed yet need a connection — this is not full offline support.", "첫 방문 후에는 사이트 페이지, 저장한 표현, 긴급 번호, 교통 설명, 저장한 일정이 캐시되어 인터넷 없이 열려요. 지도, 날씨, 환율, 외부 링크와 아직 안 본 사진은 인터넷이 필요해요. 완전한 오프라인 지원은 아니에요.", "หลังเข้าชมครั้งแรก เบราว์เซอร์จะเก็บหน้าเว็บ วลีที่บันทึกไว้ เบอร์ฉุกเฉิน ข้อมูลการเดินทาง และแผนเที่ยวที่บันทึกไว้ให้เปิดได้โดยไม่ต้องใช้อินเทอร์เน็ต. แผนที่ สภาพอากาศ อัตราแลกเปลี่ยน ลิงก์ภายนอก และรูปที่ยังไม่เคยเปิดดูต้องใช้เน็ต — จึงใช้งานแบบออฟไลน์ได้เพียงบางส่วน.")}</p></div></div>
+  <hr class="rule"><h2 class="h2">${o("Photo credits", "사진 크레딧", "เครดิตภาพ")} · ${e.length}</h2><p class="sub">${o("All photographs are from Wikimedia Commons and Flickr under the licenses shown. Tap a title for the original page, author and license text.", "모든 사진은 표시된 라이선스로 위키미디어 커먼즈와 Flickr에서 가져왔어요. 제목을 누르면 원본 페이지, 저작자, 라이선스를 볼 수 있어요.", "ภาพถ่ายทั้งหมดมาจาก Wikimedia Commons และ Flickr ตามสัญญาอนุญาตที่ระบุ. แตะชื่อภาพเพื่อดูหน้าต้นฉบับ ชื่อผู้ถ่าย และข้อความในสัญญาอนุญาต.")}</p>
   <div class="scroll-x"><table class="cmp"><thead><tr><th>${o("Used for", "용도", "ใช้กับ")}</th><th>${o("File", "파일", "ไฟล์")}</th><th>${o("Author", "저작자", "ผู้สร้าง")}</th><th>${o("License", "라이선스", "สัญญาอนุญาต")}</th></tr></thead><tbody>${e.map(([a, t]) => `<tr><td>${s(a)}</td><td><a class="gold" href="${s(t.page)}" target="_blank" rel="noopener">${s(t.title.replace(/^File:/, "").slice(0, 60))}</a></td><td>${s(t.author.slice(0, 60))}</td><td>${s(t.license)}</td></tr>`).join("")}</tbody></table></div>
-  <p class="muted" style="font-size:12.5px;margin-top:12px">${o("Map data © OpenStreetMap contributors (ODbL). Fonts: Inter, Space Grotesk, Noto Sans KR, Noto Sans Thai (Google Fonts, OFL). Map library: Leaflet.", "지도 데이터 © OpenStreetMap contributors (ODbL). 폰트: Inter, Space Grotesk, Noto Sans KR, Noto Sans Thai (Google Fonts, OFL). 지도 라이브러리: Leaflet.", "")}</p></div>`;
+  <p class="muted" style="font-size:12.5px;margin-top:12px">${o("Map data © OpenStreetMap contributors (ODbL). Fonts: Inter, Space Grotesk, Noto Sans KR, Noto Sans Thai (Google Fonts, OFL). Map library: Leaflet.", "지도 데이터 © OpenStreetMap contributors (ODbL). 폰트: Inter, Space Grotesk, Noto Sans KR, Noto Sans Thai (Google Fonts, OFL). 지도 라이브러리: Leaflet.", "ข้อมูลแผนที่ © ผู้ร่วมสร้าง OpenStreetMap (ODbL). แบบอักษร: Inter, Space Grotesk, Noto Sans KR, Noto Sans Thai (Google Fonts, OFL). ไลบรารีแผนที่: Leaflet.")}</p></div>`;
   }
   var vn = S(() => {
     _();
