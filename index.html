@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+    <title>Gen.G Bangkok Survival Guide</title>
+    <meta
+      name="description"
+      content="An independent Bangkok companion for Korean-speaking esports players and staff: Thai phrasebook, food explorer, transport, experiences, hidden gems and emergency essentials."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;700&family=Noto+Sans+Thai:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <a
+      class="sr skip"
+      href="#/home"
+      onclick="event.preventDefault();document.getElementById('view').focus({preventScroll:false})"
+      >Skip to content</a
+    >
+    <header class="hdr">
+      <div class="wrap">
+        <a class="brand" href="#/home" aria-label="Home"><b>GEN.G</b><span>BANGKOK</span></a>
+        <nav class="nav" id="topnav" aria-label="Primary"></nav>
+        <div class="hdr__r">
+          <button class="icon-btn" id="btn-search" aria-label="Search">…</button>
+          <a class="icon-btn" href="#/saved" id="btn-saved" aria-label="Saved">…</a>
+          <div class="langsw" id="langsw" role="group" aria-label="Language"></div>
+          <button class="langcycle" id="btn-lang" aria-label="Change language"></button>
+          <button class="icon-btn menu-btn" id="btn-menu" aria-label="Menu">…</button>
+        </div>
+      </div>
+    </header>
+
+    <main id="view" class="view" tabindex="-1"></main>
+
+    <footer class="foot"><div class="wrap" id="foot"></div></footer>
+
+    <nav class="bnav" id="bnav" aria-label="Quick"></nav>
+    <a class="sos" id="sos" href="#/emergency"></a>
+
+    <div class="drawer" id="drawer" aria-hidden="true">
+      <div class="drawer__scrim" data-close-drawer></div>
+      <div class="drawer__p" id="drawer-p"></div>
+    </div>
+    <div class="sov" id="sov" role="dialog" aria-modal="true" aria-label="Search"></div>
+    <div class="sheet" id="sheet"></div>
+    <div id="toast" role="status" aria-live="polite"></div>
+    <div id="overlay"></div>
+
+    <script src="js/videos.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
